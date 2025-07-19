@@ -4,9 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.98"
 flatbuffers = "25.2.10"
+pgn-reader = "0.28.0"
 planus = "1.1.1"
 serde = { version = "1.0.219", features = ["serde_derive"]}
+shakmaty = "0.29.0"
 
 [build-dependencies]
 flatc-rust = "0.2.0"

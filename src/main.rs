@@ -2,56 +2,311 @@
 // #[path = "../target/flatbuffers/main_generated.rs"]
 // mod main_flatbuffers;
 
+use std::io::Write;
 #[allow(non_snake_case)]
 mod generated_chess {
     include!(concat!(env!("OUT_DIR"), "/chess.rs"));
     pub use chess::*;
 }
 
-// use crate::main_flatbuffers::sample::{
-//     Color, Equipment, Monster, MonsterArgs, Vec3, Weapon, WeaponArgs,
-// };
-
 use std::fs::File;
+use std::io::{BufReader};
+use std::ops::ControlFlow;
+use planus::{Builder, Offset, WriteAsOffset};
+use anyhow::Result;
+use pgn_reader::{Nag, Outcome, RawComment, RawTag, Reader, SanPlus, Skip, Visitor};
+use shakmaty::{Chess, Position};
+use shakmaty::fen::Fen;
+use crate::generated_chess::{Archive, ArchiveType, Block, CastleKind, Game, GameResult, Move, Piece, Square};
 
-use planus::{Builder, WriteAsOffset};
+struct GameWriter {
+    current_builder: Builder,
+    out_file: File,
+    current_moves: Vec<Offset<Move>>,
+    games: Vec<Offset<Game>>
+}
 
-use crate::generated_chess::{Archive, ArchiveType, Block, Game, GameResult, Move, Piece, Square};
+fn role_to_piece(role: shakmaty::Role) -> Piece {
+    match role {
+        shakmaty::Role::King => Piece::King,
+        shakmaty::Role::Queen => Piece::Queen,
+        shakmaty::Role::Rook => Piece::Rook,
+        shakmaty::Role::Bishop => Piece::Bishop,
+        shakmaty::Role::Knight => Piece::Knight,
+        shakmaty::Role::Pawn => Piece::Pawn
+    }
+}
 
-fn main() {
+fn s_square_to_square(s_square: shakmaty::Square) -> Square {
+    match s_square {
+        shakmaty::Square::A1 => Square::A1,
+        shakmaty::Square::B1 => Square::B1,
+        shakmaty::Square::C1 => Square::C1,
+        shakmaty::Square::D1 => Square::D1,
+        shakmaty::Square::E1 => Square::E1,
+        shakmaty::Square::F1 => Square::F1,
+        shakmaty::Square::G1 => Square::G1,
+        shakmaty::Square::H1 => Square::H1,
+        shakmaty::Square::A2 => Square::A2,
+        shakmaty::Square::B2 => Square::B2,
+        shakmaty::Square::C2 => Square::C2,
+        shakmaty::Square::D2 => Square::D2,
+        shakmaty::Square::E2 => Square::E2,
+        shakmaty::Square::F2 => Square::F2,
+        shakmaty::Square::G2 => Square::G2,
+        shakmaty::Square::H2 => Square::H2,
+        shakmaty::Square::A3 => Square::A3,
+        shakmaty::Square::B3 => Square::B3,
+        shakmaty::Square::C3 => Square::C3,
+        shakmaty::Square::D3 => Square::D3,
+        shakmaty::Square::E3 => Square::E3,
+        shakmaty::Square::F3 => Square::F3,
+        shakmaty::Square::G3 => Square::G3,
+        shakmaty::Square::H3 => Square::H3,
+        shakmaty::Square::A4 => Square::A4,
+        shakmaty::Square::B4 => Square::B4,
+        shakmaty::Square::C4 => Square::C4,
+        shakmaty::Square::D4 => Square::D4,
+        shakmaty::Square::E4 => Square::E4,
+        shakmaty::Square::F4 => Square::F4,
+        shakmaty::Square::G4 => Square::G4,
+        shakmaty::Square::H4 => Square::H4,
+        shakmaty::Square::A5 => Square::A5,
+        shakmaty::Square::B5 => Square::B5,
+        shakmaty::Square::C5 => Square::C5,
+        shakmaty::Square::D5 => Square::D5,
+        shakmaty::Square::E5 => Square::E5,
+        shakmaty::Square::F5 => Square::F5,
+        shakmaty::Square::G5 => Square::G5,
+        shakmaty::Square::H5 => Square::H5,
+        shakmaty::Square::A6 => Square::A6,
+        shakmaty::Square::B6 => Square::B6,
+        shakmaty::Square::C6 => Square::C6,
+        shakmaty::Square::D6 => Square::D6,
+        shakmaty::Square::E6 => Square::E6,
+        shakmaty::Square::F6 => Square::F6,
+        shakmaty::Square::G6 => Square::G6,
+        shakmaty::Square::H6 => Square::H6,
+        shakmaty::Square::A7 => Square::A7,
+        shakmaty::Square::B7 => Square::B7,
+        shakmaty::Square::C7 => Square::C7,
+        shakmaty::Square::D7 => Square::D7,
+        shakmaty::Square::E7 => Square::E7,
+        shakmaty::Square::F7 => Square::F7,
+        shakmaty::Square::G7 => Square::G7,
+        shakmaty::Square::H7 => Square::H7,
+        shakmaty::Square::A8 => Square::A8,
+        shakmaty::Square::B8 => Square::B8,
+        shakmaty::Square::C8 => Square::C8,
+        shakmaty::Square::D8 => Square::D8,
+        shakmaty::Square::E8 => Square::E8,
+        shakmaty::Square::F8 => Square::F8,
+        shakmaty::Square::G8 => Square::G8,
+        shakmaty::Square::H8 => Square::H8,
+    }
+}
 
-    let mut builder = Builder::new();
-    let example_move = Move {
-        moved_piece: Piece::Pawn,
-        to: Square::A6,
-        ..Default::default()
+impl GameWriter {
+    fn new(out_file: File) -> Self {
+        Self {
+            current_builder: Builder::new(),
+            out_file,
+            current_moves: vec![],
+            games: vec![],
+        }
+    }
+
+    fn add_move(&mut self, move_to_add: &shakmaty::Move, is_check: bool) {
+        let offset = if move_to_add.is_castle() {
+            let castle_side = match move_to_add.castling_side() {
+                Some(shakmaty::CastlingSide::KingSide) => CastleKind::Kingside,
+                Some(shakmaty::CastlingSide::QueenSide) => CastleKind::Queenside,
+                _ => unreachable!()
+            };
+
+            Move::builder()
+                .moved_piece(Piece::King)
+                .from_as_default()
+                .to_as_default()
+                .promoted_piece_as_null()
+                .castle(castle_side)
+                .is_capture_as_default()
+                .is_check_as_default()
+                .prepare(&mut self.current_builder)
+        } else {
+            Move::builder()
+                .moved_piece(role_to_piece(move_to_add.role()))
+                .from(s_square_to_square(move_to_add.from().unwrap()))
+                .to(s_square_to_square(move_to_add.to()))
+                .promoted_piece(move_to_add.promotion().map(role_to_piece))
+                .castle_as_null()
+                .is_capture(move_to_add.is_capture())
+                .is_check(is_check)
+                .prepare(&mut self.current_builder)
+        };
+
+
+        self.current_moves.push(offset);
+    }
+
+    fn add_game(&mut self, result: GameResult) {
+        let res = Game::builder()
+            .result(result)
+            .moves(&self.current_moves)
+            .finish(&mut self.current_builder);
+        self.current_moves = vec![];
+    }
+
+    fn finalize(&mut self) {
+        let archive = Archive::builder()
+            .games(&self.games)
+            .prepare(&mut self.current_builder);
+        let archive_type = ArchiveType::builder().archive(archive).finish(&mut self.current_builder);
+        let block = Block::builder().archive(archive_type);
+        let result = self.current_builder.finish(block, None);
+        self.out_file.write_all(result).unwrap()
+    }
+}
+
+fn outcome_to_game_result(outcome: shakmaty::Outcome) -> GameResult {
+    use shakmaty::{Outcome, KnownOutcome, Color};
+    match outcome {
+        Outcome::Known(outcome) => match outcome {
+            KnownOutcome::Decisive { winner: Color::White } => GameResult::WhiteWin,
+            KnownOutcome::Decisive { winner: Color::Black } => GameResult::BlackWin,
+            KnownOutcome::Draw => GameResult::Draw
+        },
+        Outcome::Unknown => GameResult::Unknown
+    }
+}
+
+impl Visitor for GameWriter {
+    type Tags = Option<Chess>;
+    type Movetext = Chess;
+    type Output = ();
+
+    fn begin_tags(&mut self) -> ControlFlow<Self::Output, Self::Tags> {
+        ControlFlow::Continue(Default::default())
+    }
+
+    fn tag(&mut self, tags: &mut Self::Tags, name: &[u8], value: RawTag<'_>) -> ControlFlow<Self::Output> {
+        if name == b"FEN" {
+            let fen = match Fen::from_ascii(value.as_bytes()) {
+                Ok(fen) => fen,
+                Err(err) => return ControlFlow::Break(())
+            };
+            let pos = match fen.into_position(shakmaty::CastlingMode::Standard) {
+                Ok(pos) => pos,
+                Err(err) => return ControlFlow::Break(())
+            };
+            tags.replace(pos);
+        }
+        ControlFlow::Continue(())
+    }
+
+    fn begin_movetext(&mut self, tags: Self::Tags) -> ControlFlow<Self::Output, Self::Movetext> {
+        ControlFlow::Continue(tags.unwrap_or_default())
+    }
+
+    fn san(&mut self, movetext: &mut Self::Movetext, san_plus: SanPlus) -> ControlFlow<Self::Output> {
+        let res = match san_plus.san.to_move(movetext) {
+            Ok(x) => x,
+            Err(_) => return ControlFlow::Break(()),
+        };
+        movetext.play_unchecked(res);
+
+        self.add_move(&res, movetext.is_check());
+
+        ControlFlow::Continue(())
+    }
+
+    fn nag(&mut self, movetext: &mut Self::Movetext, nag: Nag) -> ControlFlow<Self::Output> {
+        ControlFlow::Continue(())
+    }
+
+    fn comment(&mut self, movetext: &mut Self::Movetext, comment: RawComment<'_>) -> ControlFlow<Self::Output> {
+        ControlFlow::Continue(())
+    }
+
+    fn begin_variation(&mut self, movetext: &mut Self::Movetext) -> ControlFlow<Self::Output, Skip> {
+        ControlFlow::Continue(Skip(true))
+    }
+
+    fn end_variation(&mut self, movetext: &mut Self::Movetext) -> ControlFlow<Self::Output> {
+        ControlFlow::Continue(())
+    }
+
+    fn outcome(&mut self, movetext: &mut Self::Movetext, outcome: Outcome) -> ControlFlow<Self::Output> {
+        self.add_game(outcome_to_game_result(outcome));
+        ControlFlow::Continue(())
+    }
+
+    fn end_game(&mut self, movetext: Self::Movetext) -> Self::Output {
+        ()
+    }
+}
+
+fn make_pgn_reader(path: &str) -> Reader<BufReader<File>> {
+    let file = File::open(path).unwrap();
+    let buf_reader = BufReader::new(file);
+    Reader::new(buf_reader)
+}
+
+fn main() -> Result<()> {
+    let args = std::env::args().collect::<Vec<_>>();
+    let input_file = if args.len() > 1 {
+        &args[1]
+    } else {
+        panic!("Usage: {} <input.fbs>", args[0]);
     };
 
-    let offset = example_move.prepare(&mut builder);
+    println!("Reading from {}", input_file);
 
-    let other_move = Move {
-        moved_piece: Piece::Bishop,
-        to: Square::F8,
-        ..Default::default()
-    };
-    let other_offset = other_move.prepare(&mut builder);
+    let file = File::open(input_file)?;
+    let buf_reader = BufReader::new(file);
+    let mut pgn_reader = Reader::new(buf_reader);
 
-    let game = Game::builder()
-        .result(GameResult::BlackWin)
-        .moves(vec![example_move, other_move])
-        .finish(&mut builder);
-    let other_game = Game::builder()
-        .result(GameResult::WhiteWin)
-        .moves(vec![offset, other_offset])
-        .finish(&mut builder);
+    let out_file = File::create("out.cbin")?;
+    let mut visitor = GameWriter::new(out_file);
 
-    let archive = Archive::builder()
-        .games(vec![game, other_game])
-        .finish(&mut builder);
+    pgn_reader.visit_all_games(&mut visitor)?;
 
-    let block = Block::builder().archive(ArchiveType::create_archive(&mut builder, archive));
+    visitor.finalize();
 
-    let result = builder.finish(block, None);
+    Ok(())
 
-    println!("{:?}", result);
+    // let mut builder = Builder::new();
+    // let example_move = Move {
+    //     moved_piece: Piece::Pawn,
+    //     to: Square::A6,
+    //     ..Default::default()
+    // };
+    //
+    // let offset = example_move.prepare(&mut builder);
+    //
+    // let other_move = Move {
+    //     moved_piece: Piece::Bishop,
+    //     to: Square::F8,
+    //     ..Default::default()
+    // };
+    // let other_offset = other_move.prepare(&mut builder);
+    //
+    // let game = Game::builder()
+    //     .result(GameResult::BlackWin)
+    //     .moves(vec![example_move, other_move])
+    //     .finish(&mut builder);
+    // let other_game = Game::builder()
+    //     .result(GameResult::WhiteWin)
+    //     .moves(vec![offset, other_offset])
+    //     .finish(&mut builder);
+    //
+    // let archive = Archive::builder()
+    //     .games(vec![game, other_game])
+    //     .finish(&mut builder);
+    //
+    // let block = Block::builder().archive(ArchiveType::create_archive(&mut builder, archive));
+    //
+    // let result = builder.finish(block, None);
+    //
+    // println!("{:?}", result);
 }
