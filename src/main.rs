@@ -2,6 +2,7 @@
 // #[path = "../target/flatbuffers/main_generated.rs"]
 // mod main_flatbuffers;
 
+use std::collections::HashMap;
 use std::io::Write;
 #[allow(non_snake_case)]
 mod generated_chess {
@@ -23,6 +24,7 @@ struct GameWriter {
     current_builder: Builder,
     out_file: File,
     current_moves: Vec<Offset<Move>>,
+    move_map: HashMap<Move, Offset<Move>>,
     games: Vec<Offset<Game>>
 }
 
@@ -113,37 +115,40 @@ impl GameWriter {
             out_file,
             current_moves: vec![],
             games: vec![],
+            move_map: HashMap::new()
         }
     }
 
     fn add_move(&mut self, move_to_add: &shakmaty::Move, is_check: bool) {
-        let offset = if move_to_add.is_castle() {
+        let made_move = if move_to_add.is_castle() {
             let castle_side = match move_to_add.castling_side() {
                 Some(shakmaty::CastlingSide::KingSide) => CastleKind::Kingside,
                 Some(shakmaty::CastlingSide::QueenSide) => CastleKind::Queenside,
                 _ => unreachable!()
             };
 
-            Move::builder()
-                .moved_piece(Piece::King)
-                .from_as_default()
-                .to_as_default()
-                .promoted_piece_as_null()
-                .castle(castle_side)
-                .is_capture_as_default()
-                .is_check_as_default()
-                .prepare(&mut self.current_builder)
+            Move {
+                moved_piece: Piece::King,
+                castle: Some(castle_side),
+                ..Default::default()
+            }
         } else {
-            Move::builder()
-                .moved_piece(role_to_piece(move_to_add.role()))
-                .from(s_square_to_square(move_to_add.from().unwrap()))
-                .to(s_square_to_square(move_to_add.to()))
-                .promoted_piece(move_to_add.promotion().map(role_to_piece))
-                .castle_as_null()
-                .is_capture(move_to_add.is_capture())
-                .is_check(is_check)
-                .prepare(&mut self.current_builder)
+            Move {
+                moved_piece: role_to_piece(move_to_add.role()),
+                from: move_to_add.from().map(s_square_to_square).unwrap_or(Square::A1),
+                to: s_square_to_square(move_to_add.to()),
+                promoted_piece: move_to_add.promotion().map(role_to_piece),
+                is_check,
+                is_capture: move_to_add.is_capture(),
+                ..Default::default()
+            }
         };
+
+        let offset = self.move_map.get(&made_move).map(|offset| *offset).unwrap_or_else(|| {
+            let offset = made_move.prepare(&mut self.current_builder);
+            self.move_map.insert(made_move, offset);
+            offset
+        });
 
 
         self.current_moves.push(offset);
