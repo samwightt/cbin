@@ -1,0 +1,12 @@
+[package]
+name = "chessb"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+flatbuffers = "25.2.10"
+planus = "1.1.1"
+serde = { version = "1.0.219", features = ["serde_derive"]}
+
+[build-dependencies]
+flatc-rust = "0.2.0"

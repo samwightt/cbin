@@ -1,0 +1,87 @@
+//! Chess schema
+namespace Chess;
+
+/// Represents a movable piece in a chess game.
+enum Piece: ubyte {
+  Pawn = 0,
+  Knight = 1,
+  Bishop = 2,
+  Rook = 3,
+  Queen = 4,
+  King = 5 
+}
+
+/// One of the squares on the board.
+enum Square: ubyte {
+  A1 = 0, B1 = 1, C1 = 2, D1 = 3, E1 = 4, F1 = 5, G1 = 6, H1 = 7,
+  A2 = 8, B2 = 9, C2 = 10, D2 = 11, E2 = 12, F2 = 13, G2 = 14, H2 = 15,
+  A3 = 16, B3 = 17, C3 = 18, D3 = 19, E3 = 20, F3 = 21, G3 = 22, H3 = 23,
+  A4 = 24, B4 = 25, C4 = 26, D4 = 27, E4 = 28, F4 = 29, G4 = 30, H4 = 31,
+  A5 = 32, B5 = 33, C5 = 34, D5 = 35, E5 = 36, F5 = 37, G5 = 38, H5 = 39,
+  A6 = 40, B6 = 41, C6 = 42, D6 = 43, E6 = 44, F6 = 45, G6 = 46, H6 = 47,
+  A7 = 48, B7 = 49, C7 = 50, D7 = 51, E7 = 52, F7 = 53, G7 = 54, H7 = 55,
+  A8 = 56, B8 = 57, C8 = 58, D8 = 59, E8 = 60, F8 = 61, G8 = 62, H8 = 63,
+  None = 64
+}
+
+/// Valid promotable pieces.
+enum PromotedPiece: ubyte {
+  Knight = 1,
+  Bishop = 2,
+  Rook = 3,
+  Queen = 4,
+}
+
+/// Which way the pieces are castled (if they are at all).
+enum CastleKind: ubyte {
+  Kingside,
+  Queenside
+}
+
+/// A move in a normal game.
+table Move {
+  moved_piece: Piece;
+  from: Square = None;
+  to: Square;
+  promoted_piece: Piece = null;
+  /// CASTLING SEMANTICS: The moved_piece MUST be Piece::King, the `to` square can be filled
+  /// in with any square. Implementations should ignore `from` and `to` squares when `castle` is set.
+  castle: CastleKind = null;
+  is_capture: bool = false;
+  is_check: bool = false;
+}
+
+/// Result of the game. Either white wins, black wins, there is a draw, or the result is unknown.
+/// Unknown is equivalent to the PGN ? syntax.
+enum GameResult: ubyte {
+  WhiteWin = 0,
+  BlackWin = 1,
+  Draw = 2,
+  // Equivalent to PGN ?
+  Unknown = 3
+}
+
+/// A normal chess game. Has moves and a result.
+table Game {
+  result: GameResult;
+  moves: [Move] (required);
+}
+
+/// An archive of traditional chess games.
+table Archive {
+  games: [Game] (required);
+}
+
+/// An archive is a list of games. There can be different types of archives, for different variants of chess.
+/// As such, we use a union to reserve future space for other variant support.
+/// Implementations are free to ignore archives of variants they do not support.
+union ArchiveType { Archive }
+
+/// A block in the file. Unions cannot be the root of a flatbuffer,
+/// so we must have a table here. May contain information about the archive (eg. source of the games,
+/// serializing software, etc.) in the future.
+table Block {
+  archive: ArchiveType (required);
+}
+
+root_type Block;
