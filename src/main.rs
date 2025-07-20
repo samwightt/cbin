@@ -7,10 +7,10 @@ use std::collections::HashMap;
 use std::io::Write;
 use indicatif::{ProgressBar, ProgressStyle};
 
-#[allow(warnings)]
 #[allow(non_snake_case)]
-#[allow(clippy::all)]
 mod generated_chess {
+    #![allow(warnings)]
+    #![allow(clippy::all)]
     include!(concat!(env!("OUT_DIR"), "/chess.rs"));
     pub use chess::*;
 }
