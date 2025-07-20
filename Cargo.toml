@@ -2,15 +2,17 @@
 name = "chessb"
 version = "0.1.0"
 edition = "2024"
+description = "A chess binary format library and utility"
+license = "MIT"
+repository = "https://github.com/samwightt/chessb"
+readme = "README.md"
+keywords = ["chess", "binary", "format", "pgn"]
+categories = ["games", "data-structures"]
 
 [dependencies]
 anyhow = "1.0.98"
-flatbuffers = "25.2.10"
 indicatif = "0.18.0"
 pgn-reader = "0.28.0"
 planus = "1.1.1"
 serde = { version = "1.0.219", features = ["serde_derive"]}
 shakmaty = "0.29.0"
-
-[build-dependencies]
-flatc-rust = "0.2.0"

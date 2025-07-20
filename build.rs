@@ -8,7 +8,7 @@ fn main() {
     let output_path = format!("{}/chess.rs", out_dir);
     
     let output = Command::new("planus")
-        .args(&["rust", "-o", &output_path, "schema/chess.fbs"])
+        .args(["rust", "-o", &output_path, "schema/chess.fbs"])
         .output()
         .expect("Failed to execute planus command");
     

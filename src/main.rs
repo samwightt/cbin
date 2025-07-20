@@ -1,11 +1,15 @@
-// #[allow(non_snake_case)]
-// #[path = "../target/flatbuffers/main_generated.rs"]
-// mod main_flatbuffers;
+#![deny(clippy::all)]
+#![warn(clippy::pedantic)]
+#![warn(clippy::nursery)]
+#![warn(clippy::cargo)]
 
 use std::collections::HashMap;
 use std::io::Write;
 use indicatif::{ProgressBar, ProgressStyle};
+
+#[allow(warnings)]
 #[allow(non_snake_case)]
+#[allow(clippy::all)]
 mod generated_chess {
     include!(concat!(env!("OUT_DIR"), "/chess.rs"));
     pub use chess::*;
@@ -16,12 +20,10 @@ use std::io::{BufReader};
 use std::ops::ControlFlow;
 use planus::{Builder, Offset, WriteAsOffset};
 use anyhow::Result;
-use pgn_reader::{Nag, Outcome, RawComment, RawTag, Reader, SanPlus, Skip, Visitor};
-use shakmaty::{Chess, Position};
-use shakmaty::fen::Fen;
+use pgn_reader::{Reader, Skip, Visitor};
+use shakmaty::{Chess, Position, fen::Fen};
 use crate::generated_chess::{Archive, ArchiveType, Block, CastleKind, Game, GameResult, Move, Piece, Square};
 
-const MAX_GAMES_PER_BLOCK: usize = 500_000;
 
 struct GameWriter {
     current_builder: Builder,
@@ -32,7 +34,7 @@ struct GameWriter {
     progress_bar: ProgressBar,
 }
 
-fn role_to_piece(role: shakmaty::Role) -> Piece {
+const fn role_to_piece(role: shakmaty::Role) -> Piece {
     match role {
         shakmaty::Role::King => Piece::King,
         shakmaty::Role::Queen => Piece::Queen,
@@ -43,7 +45,7 @@ fn role_to_piece(role: shakmaty::Role) -> Piece {
     }
 }
 
-fn s_square_to_square(s_square: shakmaty::Square) -> Square {
+const fn s_square_to_square(s_square: shakmaty::Square) -> Square {
     match s_square {
         shakmaty::Square::A1 => Square::A1,
         shakmaty::Square::B1 => Square::B1,
@@ -112,9 +114,14 @@ fn s_square_to_square(s_square: shakmaty::Square) -> Square {
     }
 }
 
+/// When serializing, we only want to include a certain amount of games per block. This enables us to
+/// read the resulting file in parallel later
+const MAX_GAMES_PER_BLOCK: usize = 500_000;
+
 impl GameWriter {
     fn new(out_file: File) -> Self {
         let pb = ProgressBar::new_spinner();
+        #[allow(clippy::literal_string_with_formatting_args)]
         pb.set_style(ProgressStyle::default_spinner()
             .template("{spinner:.green} Games processed: {pos:>} | Rate: {per_sec} | Elapsed: {elapsed_precise}")
             .unwrap());
@@ -129,7 +136,7 @@ impl GameWriter {
         }
     }
 
-    fn add_move(&mut self, move_to_add: &shakmaty::Move, is_check: bool) {
+    fn add_move(&mut self, move_to_add: shakmaty::Move, is_check: bool) {
         let made_move = if move_to_add.is_castle() {
             let castle_side = match move_to_add.castling_side() {
                 Some(shakmaty::CastlingSide::KingSide) => CastleKind::Kingside,
@@ -145,7 +152,7 @@ impl GameWriter {
         } else {
             Move {
                 moved_piece: role_to_piece(move_to_add.role()),
-                from: move_to_add.from().map(s_square_to_square).unwrap_or(Square::A1),
+                from: move_to_add.from().map_or(Square::A1, s_square_to_square),
                 to: s_square_to_square(move_to_add.to()),
                 promoted_piece: move_to_add.promotion().map(role_to_piece),
                 is_check,
@@ -154,7 +161,7 @@ impl GameWriter {
             }
         };
 
-        let offset = self.move_map.get(&made_move).map(|offset| *offset).unwrap_or_else(|| {
+        let offset = self.move_map.get(&made_move).copied().unwrap_or_else(|| {
             let offset = made_move.prepare(&mut self.current_builder);
             self.move_map.insert(made_move, offset);
             offset
@@ -185,6 +192,8 @@ impl GameWriter {
         let archive_type = ArchiveType::builder().archive(archive).finish(&mut self.current_builder);
         let block = Block::builder().archive(archive_type).finish(&mut self.current_builder);
         let result = self.current_builder.finish(block, None);
+
+        #[allow(clippy::cast_possible_truncation)]
         let length = result.len() as u32;
 
         // Write 4-byte length prefix, then the data
@@ -201,7 +210,7 @@ impl GameWriter {
     }
 }
 
-fn outcome_to_game_result(outcome: shakmaty::Outcome) -> GameResult {
+const fn outcome_to_game_result(outcome: shakmaty::Outcome) -> GameResult {
     use shakmaty::{Outcome, KnownOutcome, Color};
     match outcome {
         Outcome::Known(outcome) => match outcome {
@@ -219,10 +228,10 @@ impl Visitor for GameWriter {
     type Output = ();
 
     fn begin_tags(&mut self) -> ControlFlow<Self::Output, Self::Tags> {
-        ControlFlow::Continue(Default::default())
+        ControlFlow::Continue(Option::default())
     }
 
-    fn tag(&mut self, tags: &mut Self::Tags, name: &[u8], value: RawTag<'_>) -> ControlFlow<Self::Output> {
+    fn tag(&mut self, tags: &mut Self::Tags, name: &[u8], value: pgn_reader::RawTag<'_>) -> ControlFlow<Self::Output> {
         if name == b"FEN" {
             let fen = match Fen::from_ascii(value.as_bytes()) {
                 Ok(fen) => fen,
@@ -241,23 +250,20 @@ impl Visitor for GameWriter {
         ControlFlow::Continue(tags.unwrap_or_default())
     }
 
-    fn san(&mut self, movetext: &mut Self::Movetext, san_plus: SanPlus) -> ControlFlow<Self::Output> {
-        let res = match san_plus.san.to_move(movetext) {
-            Ok(x) => x,
-            Err(_) => return ControlFlow::Break(()),
-        };
+    fn san(&mut self, movetext: &mut Self::Movetext, san_plus: pgn_reader::SanPlus) -> ControlFlow<Self::Output> {
+        let Ok(res) = san_plus.san.to_move(movetext) else { return ControlFlow::Break(()) };
         movetext.play_unchecked(res);
 
-        self.add_move(&res, movetext.is_check());
+        self.add_move(res, movetext.is_check());
 
         ControlFlow::Continue(())
     }
 
-    fn nag(&mut self, _movetext: &mut Self::Movetext, _nag: Nag) -> ControlFlow<Self::Output> {
+    fn nag(&mut self, _movetext: &mut Self::Movetext, _nag: pgn_reader::Nag) -> ControlFlow<Self::Output> {
         ControlFlow::Continue(())
     }
 
-    fn comment(&mut self, _movetext: &mut Self::Movetext, _comment: RawComment<'_>) -> ControlFlow<Self::Output> {
+    fn comment(&mut self, _movetext: &mut Self::Movetext, _comment: pgn_reader::RawComment<'_>) -> ControlFlow<Self::Output> {
         ControlFlow::Continue(())
     }
 
@@ -269,14 +275,13 @@ impl Visitor for GameWriter {
         ControlFlow::Continue(())
     }
 
-    fn outcome(&mut self, _movetext: &mut Self::Movetext, outcome: Outcome) -> ControlFlow<Self::Output> {
+    fn outcome(&mut self, _movetext: &mut Self::Movetext, outcome: pgn_reader::Outcome) -> ControlFlow<Self::Output> {
         self.add_game(outcome_to_game_result(outcome));
         ControlFlow::Continue(())
     }
 
     fn end_game(&mut self, _movetext: Self::Movetext) -> Self::Output {
         self.progress_bar.inc(1);
-        ()
     }
 }
 
@@ -288,7 +293,7 @@ fn main() -> Result<()> {
         panic!("Usage: {} <input.fbs>", args[0]);
     };
 
-    println!("Reading from {}", input_file);
+    println!("Reading from {input_file}");
 
     let file = File::open(input_file)?;
     let buf_reader = BufReader::new(file);
