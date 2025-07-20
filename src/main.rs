@@ -4,6 +4,7 @@
 
 use std::collections::HashMap;
 use std::io::Write;
+use indicatif::{ProgressBar, ProgressStyle};
 #[allow(non_snake_case)]
 mod generated_chess {
     include!(concat!(env!("OUT_DIR"), "/chess.rs"));
@@ -20,12 +21,15 @@ use shakmaty::{Chess, Position};
 use shakmaty::fen::Fen;
 use crate::generated_chess::{Archive, ArchiveType, Block, CastleKind, Game, GameResult, Move, Piece, Square};
 
+const MAX_GAMES_PER_BLOCK: usize = 500_000;
+
 struct GameWriter {
     current_builder: Builder,
     out_file: File,
     current_moves: Vec<Offset<Move>>,
     move_map: HashMap<Move, Offset<Move>>,
-    games: Vec<Offset<Game>>
+    games: Vec<Offset<Game>>,
+    progress_bar: ProgressBar
 }
 
 fn role_to_piece(role: shakmaty::Role) -> Piece {
@@ -110,12 +114,18 @@ fn s_square_to_square(s_square: shakmaty::Square) -> Square {
 
 impl GameWriter {
     fn new(out_file: File) -> Self {
+        let pb = ProgressBar::new_spinner();
+        pb.set_style(ProgressStyle::default_spinner()
+            .template("{spinner:.green} Games processed: {pos:>} | Rate: {per_sec} | Elapsed: {elapsed_precise}")
+            .unwrap());
+
         Self {
             current_builder: Builder::new(),
             out_file,
             current_moves: vec![],
             games: vec![],
-            move_map: HashMap::new()
+            move_map: HashMap::new(),
+            progress_bar: pb
         }
     }
 
@@ -157,9 +167,15 @@ impl GameWriter {
     fn add_game(&mut self, result: GameResult) {
         let res = Game::builder()
             .result(result)
+            .start_position_as_null()
             .moves(&self.current_moves)
             .finish(&mut self.current_builder);
         self.current_moves = vec![];
+        self.games.push(res);
+
+        if self.games.len() > MAX_GAMES_PER_BLOCK {
+            self.finalize();
+        }
     }
 
     fn finalize(&mut self) {
@@ -167,9 +183,21 @@ impl GameWriter {
             .games(&self.games)
             .prepare(&mut self.current_builder);
         let archive_type = ArchiveType::builder().archive(archive).finish(&mut self.current_builder);
-        let block = Block::builder().archive(archive_type);
+        let block = Block::builder().archive(archive_type).finish(&mut self.current_builder);
         let result = self.current_builder.finish(block, None);
-        self.out_file.write_all(result).unwrap()
+        let length = result.len() as u32;
+
+        // Write 4-byte length prefix, then the data
+        self.out_file.write_all(&length.to_le_bytes()).unwrap();
+        self.out_file.write_all(result).unwrap();
+        self.reset();
+    }
+
+    fn reset(&mut self) {
+        self.move_map = HashMap::new();
+        self.current_moves = vec![];
+        self.games = vec![];
+        self.current_builder.clear();
     }
 }
 
@@ -247,6 +275,7 @@ impl Visitor for GameWriter {
     }
 
     fn end_game(&mut self, movetext: Self::Movetext) -> Self::Output {
+        self.progress_bar.inc(1);
         ()
     }
 }
@@ -277,41 +306,8 @@ fn main() -> Result<()> {
     pgn_reader.visit_all_games(&mut visitor)?;
 
     visitor.finalize();
+    visitor.progress_bar.finish_with_message("Processing complete!");
 
     Ok(())
 
-    // let mut builder = Builder::new();
-    // let example_move = Move {
-    //     moved_piece: Piece::Pawn,
-    //     to: Square::A6,
-    //     ..Default::default()
-    // };
-    //
-    // let offset = example_move.prepare(&mut builder);
-    //
-    // let other_move = Move {
-    //     moved_piece: Piece::Bishop,
-    //     to: Square::F8,
-    //     ..Default::default()
-    // };
-    // let other_offset = other_move.prepare(&mut builder);
-    //
-    // let game = Game::builder()
-    //     .result(GameResult::BlackWin)
-    //     .moves(vec![example_move, other_move])
-    //     .finish(&mut builder);
-    // let other_game = Game::builder()
-    //     .result(GameResult::WhiteWin)
-    //     .moves(vec![offset, other_offset])
-    //     .finish(&mut builder);
-    //
-    // let archive = Archive::builder()
-    //     .games(vec![game, other_game])
-    //     .finish(&mut builder);
-    //
-    // let block = Block::builder().archive(ArchiveType::create_archive(&mut builder, archive));
-    //
-    // let result = builder.finish(block, None);
-    //
-    // println!("{:?}", result);
 }

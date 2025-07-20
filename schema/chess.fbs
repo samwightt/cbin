@@ -61,9 +61,30 @@ enum GameResult: ubyte {
   Unknown = 3
 }
 
+/// Information about a game. Equivalent to the PGN tags section.
+table GameInfo {
+  /// Equivalent to the PGN [Event] tag. Platforms like Chess.com simply use a string like 'Live Chess' here. Others
+  /// like Lichess have more specific data.
+  event: string;
+  /// Equivalent to the PGN [Site] tag.
+  site: string;
+  /// Publicly accessible URL of the game. Some resources like the Lichess DB include this as a tag in their PGN [Site] tag.
+  url: string;
+  /// Name or username of the white player.
+  white_player: string;
+  /// Name or username of the black player.
+  black_player: string;
+  /// Elo of the white player.
+  white_elo: uint;
+  /// Elo of the black player.
+  black_elo: uint;
+}
+
 /// A normal chess game. Has moves and a result.
 table Game {
   result: GameResult;
+  /// FEN string of the start position (if applicable).
+  start_position: string;
   moves: [Move] (required);
 }
 
