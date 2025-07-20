@@ -29,7 +29,7 @@ struct GameWriter {
     current_moves: Vec<Offset<Move>>,
     move_map: HashMap<Move, Offset<Move>>,
     games: Vec<Offset<Game>>,
-    progress_bar: ProgressBar
+    progress_bar: ProgressBar,
 }
 
 fn role_to_piece(role: shakmaty::Role) -> Piece {
@@ -226,11 +226,11 @@ impl Visitor for GameWriter {
         if name == b"FEN" {
             let fen = match Fen::from_ascii(value.as_bytes()) {
                 Ok(fen) => fen,
-                Err(err) => return ControlFlow::Break(())
+                Err(_err) => return ControlFlow::Break(())
             };
             let pos = match fen.into_position(shakmaty::CastlingMode::Standard) {
                 Ok(pos) => pos,
-                Err(err) => return ControlFlow::Break(())
+                Err(_err) => return ControlFlow::Break(())
             };
             tags.replace(pos);
         }
@@ -253,37 +253,31 @@ impl Visitor for GameWriter {
         ControlFlow::Continue(())
     }
 
-    fn nag(&mut self, movetext: &mut Self::Movetext, nag: Nag) -> ControlFlow<Self::Output> {
+    fn nag(&mut self, _movetext: &mut Self::Movetext, _nag: Nag) -> ControlFlow<Self::Output> {
         ControlFlow::Continue(())
     }
 
-    fn comment(&mut self, movetext: &mut Self::Movetext, comment: RawComment<'_>) -> ControlFlow<Self::Output> {
+    fn comment(&mut self, _movetext: &mut Self::Movetext, _comment: RawComment<'_>) -> ControlFlow<Self::Output> {
         ControlFlow::Continue(())
     }
 
-    fn begin_variation(&mut self, movetext: &mut Self::Movetext) -> ControlFlow<Self::Output, Skip> {
+    fn begin_variation(&mut self, _movetext: &mut Self::Movetext) -> ControlFlow<Self::Output, Skip> {
         ControlFlow::Continue(Skip(true))
     }
 
-    fn end_variation(&mut self, movetext: &mut Self::Movetext) -> ControlFlow<Self::Output> {
+    fn end_variation(&mut self, _movetext: &mut Self::Movetext) -> ControlFlow<Self::Output> {
         ControlFlow::Continue(())
     }
 
-    fn outcome(&mut self, movetext: &mut Self::Movetext, outcome: Outcome) -> ControlFlow<Self::Output> {
+    fn outcome(&mut self, _movetext: &mut Self::Movetext, outcome: Outcome) -> ControlFlow<Self::Output> {
         self.add_game(outcome_to_game_result(outcome));
         ControlFlow::Continue(())
     }
 
-    fn end_game(&mut self, movetext: Self::Movetext) -> Self::Output {
+    fn end_game(&mut self, _movetext: Self::Movetext) -> Self::Output {
         self.progress_bar.inc(1);
         ()
     }
-}
-
-fn make_pgn_reader(path: &str) -> Reader<BufReader<File>> {
-    let file = File::open(path).unwrap();
-    let buf_reader = BufReader::new(file);
-    Reader::new(buf_reader)
 }
 
 fn main() -> Result<()> {
