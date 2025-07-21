@@ -1,4 +1,4 @@
-use crate::generated_chess::{GameResult, Piece, Square};
+use crate::generated_chess::{File, GameResult, Piece, Rank, Square};
 
 /// Converts a `shakmaty::Role` into a corresponding `Piece`.
 pub const fn role_to_piece(role: shakmaty::Role) -> Piece {
@@ -45,5 +45,33 @@ pub const fn outcome_to_game_result(outcome: shakmaty::Outcome) -> GameResult {
             KnownOutcome::Draw => GameResult::Draw,
         },
         Outcome::Unknown => GameResult::Unknown,
+    }
+}
+
+pub const fn shakmaty_file_to_file(s_file: pgn_reader::shakmaty::File) -> File {
+    use pgn_reader::shakmaty;
+    match s_file {
+        shakmaty::File::A => File::A,
+        shakmaty::File::B => File::B,
+        shakmaty::File::C => File::C,
+        shakmaty::File::D => File::D,
+        shakmaty::File::E => File::E,
+        shakmaty::File::F => File::F,
+        shakmaty::File::G => File::G,
+        shakmaty::File::H => File::H,
+    }
+}
+
+pub const fn shakmaty_rank_to_rank(s_rank: pgn_reader::shakmaty::Rank) -> Rank {
+    use pgn_reader::shakmaty;
+    match s_rank {
+        shakmaty::Rank::First => Rank::First,
+        shakmaty::Rank::Second => Rank::Second,
+        shakmaty::Rank::Third => Rank::Third,
+        shakmaty::Rank::Fourth => Rank::Fourth,
+        shakmaty::Rank::Fifth => Rank::Fifth,
+        shakmaty::Rank::Sixth => Rank::Sixth,
+        shakmaty::Rank::Seventh => Rank::Seventh,
+        shakmaty::Rank::Eighth => Rank::Eighth,
     }
 }

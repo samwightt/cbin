@@ -8,7 +8,7 @@ enum Piece: ubyte {
   Bishop = 2,
   Rook = 3,
   Queen = 4,
-  King = 5 
+  King = 5
 }
 
 /// One of the squares on the board.
@@ -38,17 +38,49 @@ enum CastleKind: ubyte {
   Queenside
 }
 
+enum Rank: ubyte {
+  First = 1,
+  Second = 2,
+  Third = 3,
+  Fourth = 4,
+  Fifth = 5,
+  Sixth = 6,
+  Seventh = 7,
+  Eighth = 8,
+}
+
+enum File: ubyte {
+  A = 1,
+  B = 2,
+  C = 3,
+  D = 4,
+  E = 5,
+  F = 6,
+  G = 7,
+  H = 8,
+}
+
 /// A move in a normal game.
 table Move {
+  /// The piece that is moved.
   moved_piece: Piece;
-  from: Square = None;
+  /// Used for disambiguation of moves with the same piece type that can move to the same destination square.
+  /// Follows same semantics as PGN notation:
+  /// 1. If pieces can be disambiguated by file, the file is used.
+  /// 2. If pieces can be disambiguated by rank, the rank is used.
+  /// 3. If pieces can be disambiguated by file and rank, the file and rank are used.
+  from_file: File = null;
+  /// Used for disambiguation of moves with the same piece type that can move to the same destination square.
+  /// 1. If pieces can be disambiguated by file, the file is used.
+  /// 2. If pieces can be disambiguated by rank, the rank is used.
+  /// 3. If pieces can be disambiguated by file and rank, the file and rank are used.
+  from_rank: Rank = null;
   to: Square;
   promoted_piece: Piece = null;
   /// CASTLING SEMANTICS: The moved_piece MUST be Piece::King, the `to` square can be filled
   /// in with any square. Implementations should ignore `from` and `to` squares when `castle` is set.
   castle: CastleKind = null;
   is_capture: bool = false;
-  is_check: bool = false;
 }
 
 /// Result of the game. Either white wins, black wins, there is a draw, or the result is unknown.

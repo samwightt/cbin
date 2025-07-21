@@ -3,10 +3,10 @@
 #![warn(clippy::nursery)]
 #![warn(clippy::cargo)]
 
+mod serializer;
 mod utils;
 
 use indicatif::{ProgressBar, ProgressStyle};
-use std::collections::HashMap;
 use std::io::Write;
 
 #[allow(non_snake_case)]
@@ -17,29 +17,21 @@ mod generated_chess {
     pub use chess::*;
 }
 
-use crate::generated_chess::{
-    Archive, ArchiveType, Block, CastleKind, Game, GameResult, Move, Piece, Square,
-};
+use crate::generated_chess::{CastleKind, Game, GameResult, Move, Piece};
+use crate::serializer::Serializer;
+use crate::utils::{role_to_piece, shakmaty_square_to_square};
 use anyhow::Result;
 use pgn_reader::{Reader, Skip, Visitor};
-use planus::{Builder, Offset, WriteAsOffset};
-use shakmaty::{Chess, Position, fen::Fen};
+use planus::Offset;
 use std::fs::File;
 use std::io::BufReader;
 use std::ops::ControlFlow;
 
 struct GameWriter<T: Write> {
-    current_builder: Builder,
-    writer: T,
+    serializer: Serializer<T>,
     current_moves: Vec<Offset<Move>>,
-    move_map: HashMap<Move, Offset<Move>>,
-    games: Vec<Offset<Game>>,
     progress_bar: ProgressBar,
 }
-
-/// When serializing, we only want to include a certain amount of games per block. This enables us to
-/// read the resulting file in parallel later.
-const MAX_GAMES_PER_BLOCK: usize = 500_000;
 
 impl<T: Write> GameWriter<T> {
     fn new(out_file: T) -> Self {
@@ -50,47 +42,47 @@ impl<T: Write> GameWriter<T> {
             .unwrap());
 
         Self {
-            current_builder: Builder::new(),
-            writer: out_file,
+            serializer: Serializer::new(out_file),
             current_moves: vec![],
-            games: vec![],
-            move_map: HashMap::new(),
             progress_bar: pb,
         }
     }
 
-    fn add_move(&mut self, move_to_add: shakmaty::Move, is_check: bool) {
-        let made_move = if move_to_add.is_castle() {
-            let castle_side = match move_to_add.castling_side() {
-                Some(shakmaty::CastlingSide::KingSide) => CastleKind::Kingside,
-                Some(shakmaty::CastlingSide::QueenSide) => CastleKind::Queenside,
-                _ => unreachable!(),
-            };
+    fn add_move(&mut self, san_plus: pgn_reader::SanPlus) {
+        use pgn_reader::shakmaty::{CastlingSide, san::San};
+        let made_move = match san_plus.san {
+            San::Normal {
+                role,
+                file,
+                rank,
+                capture,
+                to,
+                promotion,
+            } => Move {
+                moved_piece: role_to_piece(role),
+                to: shakmaty_square_to_square(to),
+                is_capture: capture,
+                promoted_piece: promotion.map(role_to_piece),
+                castle: None,
+                from_file: file.map(utils::shakmaty_file_to_file),
+                from_rank: rank.map(utils::shakmaty_rank_to_rank),
+            },
+            San::Castle(side) => {
+                let castle_side = match side {
+                    CastlingSide::KingSide => CastleKind::Kingside,
+                    CastlingSide::QueenSide => CastleKind::Queenside,
+                };
 
-            Move {
-                moved_piece: Piece::King,
-                castle: Some(castle_side),
-                ..Default::default()
+                Move {
+                    moved_piece: Piece::King,
+                    castle: Some(castle_side),
+                    ..Default::default()
+                }
             }
-        } else {
-            Move {
-                moved_piece: utils::role_to_piece(move_to_add.role()),
-                from: move_to_add
-                    .from()
-                    .map_or(Square::A1, utils::shakmaty_square_to_square),
-                to: utils::shakmaty_square_to_square(move_to_add.to()),
-                promoted_piece: move_to_add.promotion().map(utils::role_to_piece),
-                is_check,
-                is_capture: move_to_add.is_capture(),
-                ..Default::default()
-            }
+            _ => panic!("Unsupported move type."),
         };
 
-        let offset = self.move_map.get(&made_move).copied().unwrap_or_else(|| {
-            let offset = made_move.prepare(&mut self.current_builder);
-            self.move_map.insert(made_move, offset);
-            offset
-        });
+        let offset = self.serializer.add_move(&made_move);
 
         self.current_moves.push(offset);
     }
@@ -99,89 +91,44 @@ impl<T: Write> GameWriter<T> {
         let res = Game::builder()
             .result(result)
             .start_position_as_null()
-            .moves(&self.current_moves)
-            .finish(&mut self.current_builder);
+            .moves(&self.current_moves);
+        self.serializer.add_game(&res).unwrap();
         self.current_moves = vec![];
-        self.games.push(res);
-
-        if self.games.len() > MAX_GAMES_PER_BLOCK {
-            self.finalize();
-        }
     }
 
     fn finalize(&mut self) {
-        let archive = Archive::builder()
-            .games(&self.games)
-            .prepare(&mut self.current_builder);
-        let archive_type = ArchiveType::builder()
-            .archive(archive)
-            .finish(&mut self.current_builder);
-        let block = Block::builder()
-            .archive(archive_type)
-            .finish(&mut self.current_builder);
-        let result = self.current_builder.finish(block, None);
-
-        #[allow(clippy::cast_possible_truncation)]
-        let length = result.len() as u32;
-
-        // Write 4-byte length prefix, then the data
-        self.writer.write_all(&length.to_le_bytes()).unwrap();
-        self.writer.write_all(result).unwrap();
-        self.reset();
-    }
-
-    fn reset(&mut self) {
-        self.move_map = HashMap::new();
-        self.current_moves = vec![];
-        self.games = vec![];
-        self.current_builder.clear();
+        self.serializer.finish_current_block().unwrap();
     }
 }
 
 impl<T: Write> Visitor for GameWriter<T> {
-    type Tags = Option<Chess>;
-    type Movetext = Chess;
+    type Tags = ();
+    type Movetext = ();
     type Output = ();
 
     fn begin_tags(&mut self) -> ControlFlow<Self::Output, Self::Tags> {
-        ControlFlow::Continue(Option::default())
+        ControlFlow::Continue(())
     }
 
     fn tag(
         &mut self,
-        tags: &mut Self::Tags,
-        name: &[u8],
-        value: pgn_reader::RawTag<'_>,
+        _tags: &mut Self::Tags,
+        _name: &[u8],
+        _value: pgn_reader::RawTag<'_>,
     ) -> ControlFlow<Self::Output> {
-        if name == b"FEN" {
-            let fen = match Fen::from_ascii(value.as_bytes()) {
-                Ok(fen) => fen,
-                Err(_err) => return ControlFlow::Break(()),
-            };
-            let pos = match fen.into_position(shakmaty::CastlingMode::Standard) {
-                Ok(pos) => pos,
-                Err(_err) => return ControlFlow::Break(()),
-            };
-            tags.replace(pos);
-        }
         ControlFlow::Continue(())
     }
 
-    fn begin_movetext(&mut self, tags: Self::Tags) -> ControlFlow<Self::Output, Self::Movetext> {
-        ControlFlow::Continue(tags.unwrap_or_default())
+    fn begin_movetext(&mut self, _tags: Self::Tags) -> ControlFlow<Self::Output, Self::Movetext> {
+        ControlFlow::Continue(())
     }
 
     fn san(
         &mut self,
-        movetext: &mut Self::Movetext,
+        _movetext: &mut Self::Movetext,
         san_plus: pgn_reader::SanPlus,
     ) -> ControlFlow<Self::Output> {
-        let Ok(res) = san_plus.san.to_move(movetext) else {
-            return ControlFlow::Break(());
-        };
-        movetext.play_unchecked(res);
-
-        self.add_move(res, movetext.is_check());
+        self.add_move(san_plus);
 
         ControlFlow::Continue(())
     }
