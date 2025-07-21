@@ -28,9 +28,9 @@ use std::fs::File;
 use std::io::BufReader;
 use std::ops::ControlFlow;
 
-struct GameWriter {
+struct GameWriter<T: Write> {
     current_builder: Builder,
-    out_file: File,
+    writer: T,
     current_moves: Vec<Offset<Move>>,
     move_map: HashMap<Move, Offset<Move>>,
     games: Vec<Offset<Game>>,
@@ -41,8 +41,8 @@ struct GameWriter {
 /// read the resulting file in parallel later.
 const MAX_GAMES_PER_BLOCK: usize = 500_000;
 
-impl GameWriter {
-    fn new(out_file: File) -> Self {
+impl<T: Write> GameWriter<T> {
+    fn new(out_file: T) -> Self {
         let pb = ProgressBar::new_spinner();
         #[allow(clippy::literal_string_with_formatting_args)]
         pb.set_style(ProgressStyle::default_spinner()
@@ -51,7 +51,7 @@ impl GameWriter {
 
         Self {
             current_builder: Builder::new(),
-            out_file,
+            writer: out_file,
             current_moves: vec![],
             games: vec![],
             move_map: HashMap::new(),
@@ -125,8 +125,8 @@ impl GameWriter {
         let length = result.len() as u32;
 
         // Write 4-byte length prefix, then the data
-        self.out_file.write_all(&length.to_le_bytes()).unwrap();
-        self.out_file.write_all(result).unwrap();
+        self.writer.write_all(&length.to_le_bytes()).unwrap();
+        self.writer.write_all(result).unwrap();
         self.reset();
     }
 
@@ -138,7 +138,7 @@ impl GameWriter {
     }
 }
 
-impl Visitor for GameWriter {
+impl<T: Write> Visitor for GameWriter<T> {
     type Tags = Option<Chess>;
     type Movetext = Chess;
     type Output = ();
