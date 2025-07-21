@@ -2,3 +2,4 @@
 .idea
 *.pgn
 *.cbin
+.DS_STORE
