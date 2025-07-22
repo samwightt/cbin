@@ -4,9 +4,9 @@
 #![warn(clippy::cargo)]
 #![allow(clippy::multiple_crate_versions)]
 
-mod converter;
-mod serializer;
-mod utils;
+pub mod converter;
+pub mod serializer;
+pub mod utils;
 
 use indicatif::{ProgressBar, ProgressFinish, ProgressStyle};
 
@@ -248,10 +248,7 @@ fn read_file(input_file: &str) -> Result<()> {
     moves_progress_bar.finish_with_message("Average moves calculation complete");
 
     let average_moves_per_game = total_moves as f64 / total_games as f64;
-    println!(
-        "Average moves per game: {:.2}",
-        average_moves_per_game
-    );
+    println!("Average moves per game: {:.2}", average_moves_per_game);
 
     // Set up progress bar for game analysis
     let progress_bar = ProgressBar::new(total_games as u64);
