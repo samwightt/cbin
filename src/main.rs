@@ -7,7 +7,7 @@ mod converter;
 mod serializer;
 mod utils;
 
-use indicatif::{ProgressBar, ProgressStyle};
+use indicatif::{ProgressBar, ProgressFinish, ProgressStyle};
 
 #[allow(non_snake_case)]
 mod generated_chess {
@@ -20,6 +20,7 @@ mod generated_chess {
 use crate::converter::Converter;
 use crate::serializer::Serializer;
 use anyhow::Result;
+use std::borrow::Cow;
 use std::fs::File;
 use std::io::BufReader;
 
@@ -34,23 +35,23 @@ fn main() -> Result<()> {
     println!("Reading from {input_file}");
 
     let file = File::open(input_file)?;
+    let len = file.metadata()?.len();
     let buf_reader = BufReader::new(file);
+    let progress_bar = ProgressBar::new(len)
+        .wrap_read(buf_reader)
+        .with_message("Reading and converting...")
+        .with_finish(ProgressFinish::WithMessage(Cow::from(
+            "Finished converting file!",
+        )))
+        .with_style(ProgressStyle::with_template(
+            "{msg} {percent_precise}% {bar:40.cyan/blue} [{decimal_bytes_per_sec}, {eta} left]",
+        )?);
 
     let out_file = File::create("out.cbin")?;
     let serializer = Serializer::new(out_file);
-    let mut converter = Converter::new(buf_reader, serializer);
+    let mut converter = Converter::new(progress_bar, serializer);
 
-    let pb = ProgressBar::new_spinner();
-    #[allow(clippy::literal_string_with_formatting_args)]
-    pb.set_style(ProgressStyle::default_spinner()
-        .template("{spinner:.green} Games processed: {pos:>} | Rate: {per_sec} | Elapsed: {elapsed_precise}")
-        .unwrap());
-
-    while converter.next_game().is_ok_and(|x| x) {
-        pb.inc(1);
-    }
-
-    pb.finish_with_message("Processing complete!");
+    while converter.next_game().is_ok_and(|x| x) {}
 
     Ok(())
 }
