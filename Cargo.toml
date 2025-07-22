@@ -11,6 +11,7 @@ categories = ["games", "data-structures"]
 
 [dependencies]
 anyhow = "1.0.98"
+clap = { version = "4.5.41", features = ["derive"] }
 indicatif = "0.18.0"
 pgn-reader = "0.28.0"
 planus = "1.1.1"
