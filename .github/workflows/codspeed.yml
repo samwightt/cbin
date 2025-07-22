@@ -23,6 +23,9 @@ jobs:
           cache-target: release
           bins: cargo-codspeed
 
+      - name: Install planus cli
+        run: cargo install planus-cli
+
       - name: Build the benchmark target(s)
         run: cargo codspeed build
 
