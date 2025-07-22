@@ -110,15 +110,6 @@ impl<T: Write> Visitor for GameWriter<T> {
         ControlFlow::Continue(())
     }
 
-    fn tag(
-        &mut self,
-        _tags: &mut Self::Tags,
-        _name: &[u8],
-        _value: pgn_reader::RawTag<'_>,
-    ) -> ControlFlow<Self::Output> {
-        ControlFlow::Continue(())
-    }
-
     fn begin_movetext(&mut self, _tags: Self::Tags) -> ControlFlow<Self::Output, Self::Movetext> {
         ControlFlow::Continue(())
     }
@@ -133,31 +124,11 @@ impl<T: Write> Visitor for GameWriter<T> {
         ControlFlow::Continue(())
     }
 
-    fn nag(
-        &mut self,
-        _movetext: &mut Self::Movetext,
-        _nag: pgn_reader::Nag,
-    ) -> ControlFlow<Self::Output> {
-        ControlFlow::Continue(())
-    }
-
-    fn comment(
-        &mut self,
-        _movetext: &mut Self::Movetext,
-        _comment: pgn_reader::RawComment<'_>,
-    ) -> ControlFlow<Self::Output> {
-        ControlFlow::Continue(())
-    }
-
     fn begin_variation(
         &mut self,
         _movetext: &mut Self::Movetext,
     ) -> ControlFlow<Self::Output, Skip> {
         ControlFlow::Continue(Skip(true))
-    }
-
-    fn end_variation(&mut self, _movetext: &mut Self::Movetext) -> ControlFlow<Self::Output> {
-        ControlFlow::Continue(())
     }
 
     fn outcome(
