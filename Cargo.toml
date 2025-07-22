@@ -13,8 +13,11 @@ categories = ["games", "data-structures"]
 anyhow = "1.0.98"
 clap = { version = "4.5.41", features = ["derive"] }
 indicatif = "0.18.0"
+memmap2 = "0.9.7"
+num-format = "0.4.4"
 pgn-reader = "0.28.0"
 planus = "1.1.1"
+rayon = "1.10.0"
 serde = { version = "1.0.219", features = ["serde_derive"]}
 shakmaty = "0.29.0"
 zstd = "0.13.3"
