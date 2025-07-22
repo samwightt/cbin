@@ -8,7 +8,7 @@ use pgn_reader::Visitor;
 use planus::Offset;
 
 use crate::{
-    generated_chess::{CastleKind, Game, GameResult, Move, Piece},
+    generated_chess::{CastleKind, Game, Move, Piece},
     serializer::Serializer,
     utils::{self, role_to_piece, shakmaty_square_to_square},
 };

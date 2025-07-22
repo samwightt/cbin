@@ -8,7 +8,6 @@ mod serializer;
 mod utils;
 
 use indicatif::{ProgressBar, ProgressStyle};
-use std::io::Write;
 
 #[allow(non_snake_case)]
 mod generated_chess {
