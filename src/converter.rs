@@ -85,7 +85,7 @@ impl<W: Write> Visitor for ConverterVisitor<W> {
             .start_position_as_null()
             .moves(&self.current_moves);
         self.serializer.add_game(&res).unwrap();
-        self.current_moves = vec![];
+        self.current_moves.clear();
         ControlFlow::Continue(())
     }
 

@@ -22,7 +22,7 @@ use crate::serializer::Serializer;
 use anyhow::Result;
 use std::borrow::Cow;
 use std::fs::File;
-use std::io::BufReader;
+use std::io::{BufReader, Read};
 
 fn main() -> Result<()> {
     let args = std::env::args().collect::<Vec<_>>();
@@ -37,7 +37,7 @@ fn main() -> Result<()> {
     let file = File::open(input_file)?;
     let len = file.metadata()?.len();
     let buf_reader = BufReader::new(file);
-    let progress_bar = ProgressBar::new(len)
+    let progress_wrapped = ProgressBar::new(len)
         .wrap_read(buf_reader)
         .with_message("Reading and converting...")
         .with_finish(ProgressFinish::WithMessage(Cow::from(
@@ -46,10 +46,16 @@ fn main() -> Result<()> {
         .with_style(ProgressStyle::with_template(
             "{msg} {percent_precise}% {bar:40.cyan/blue} [{decimal_bytes_per_sec}, {eta} left]",
         )?);
+    
+    let reader: Box<dyn Read> = if input_file.ends_with(".zst") {
+        Box::new(zstd::Decoder::new(progress_wrapped)?)
+    } else {
+        Box::new(progress_wrapped)
+    };
 
     let out_file = File::create("out.cbin")?;
     let serializer = Serializer::new(out_file);
-    let mut converter = Converter::new(progress_bar, serializer);
+    let mut converter = Converter::new(reader, serializer);
 
     while converter.next_game().is_ok_and(|x| x) {}
 
