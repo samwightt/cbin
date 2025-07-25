@@ -1,0 +1,912 @@
+[Event "Let's Play!"]
+[Site "Chess.com"]
+[Date "2025.06.28"]
+[Round "-"]
+[White "Sharing1"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "836"]
+[BlackElo "226"]
+[TimeControl "1/259200"]
+[EndDate "2025.07.11"]
+[Termination "Sharing1 won by resignation"]
+
+1. b3 e5 2. Bb2 Nc6 3. g3 d5 4. Bg2 Nf6 5. e3 Bf5 6. Qe2 Bb4 7. Qb5 O-O 8. a3
+Bxc2 9. Qxb7 Na5 10. Qxb4 Nxb3 11. Nc3 d4 12. Nce2 Nxa1 13. Bxa1 Bg6 14. Bxa8
+Qxa8 15. f3 Qxf3 16. Nxf3 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "Karthik782"]
+[Result "1-0"]
+[WhiteElo "304"]
+[BlackElo "277"]
+[TimeControl "600"]
+[EndTime "23:43:47 GMT+0000"]
+[Termination "epicspongee won - game abandoned"]
+
+1. e4 e5 2. Nf3 d5 3. Nxe5 f6 4. Ng4 f5 5. Ne3 dxe4 6. d4 f4 7. Nd5 Qxd5 8. Nc3
+Qd8 9. Bxf4 e3 10. fxe3 Qh4+ 11. g3 Qh6 12. Bxh6 gxh6 13. Bc4 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "parrinxa"]
+[Black "epicspongee"]
+[Result "0-1"]
+[WhiteElo "300"]
+[BlackElo "312"]
+[TimeControl "600"]
+[EndTime "23:56:18 GMT+0000"]
+[Termination "epicspongee won by checkmate"]
+
+1. f4 d5 2. g4 Nf6 3. h4 Nxg4 4. h5 e5 5. fxe5 Nxe5 6. Bh3 Nbc6 7. Bxc8 Qxc8 8.
+d4 Nc4 9. b3 Nd6 10. h6 gxh6 11. Bxh6 Bxh6 12. Rxh6 Nf5 13. Rf6 Nfxd4 14. c3 Ne6
+15. b4 Rg8 16. b5 Qd8 17. bxc6 Qxf6 18. cxb7 Rd8 19. Qa4+ c6 20. Qxa7 Rxg1+ 21.
+Kd2 Qf4+ 22. Kc2 Qe4+ 23. Kd2 Qf4+ 24. Kc2 Qe4+ 25. Kd2 Rxb1 26. Rxb1 Qxb1 27.
+b8=Q Rxb8 28. e3 Qb2+ 29. Kd3 Qb1+ 30. Kd2 h5 31. Qc7 Nxc7 32. e4 dxe4 33. c4
+Qxa2+ 34. Kc3 Qa5+ 35. Kd4 Ne6+ 36. Kxe4 Qc5 37. Kd3 Nf4+ 38. Kc3 Ne2+ 39. Kd3
+Qd4+ 40. Kxe2 Qxc4+ 41. Kf3 Rb3+ 42. Kf2 Qc2+ 43. Ke1 Rb1# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "domun95"]
+[Black "epicspongee"]
+[Result "1/2-1/2"]
+[WhiteElo "332"]
+[BlackElo "312"]
+[TimeControl "600"]
+[EndTime "0:18:49 GMT+0000"]
+[Termination "Game drawn by stalemate"]
+
+1. e3 e5 2. Qh5 Nf6 3. Qxe5+ Qe7 4. Qg5 h6 5. Qh4 d5 6. Qa4+ c6 7. d4 Bg4 8. Nf3
+Qe6 9. Bd3 Qd6 10. h3 Qb4+ 11. Qxb4 Bxb4+ 12. c3 Ba5 13. O-O Bh5 14. Ne5 O-O 15.
+Nd2 b5 16. Bf5 Be2 17. Re1 Bc4 18. Ndf3 Na6 19. Nd7 Rfd8 20. Nxf6+ gxf6 21. Nh4
+b4 22. f3 bxc3 23. b3 c2 24. Ba3 Bc3 25. Rac1 Bxe1 26. Rxe1 Be2 27. Rc1 Rab8 28.
+Rxc2 Nb4 29. Rxe2 Na6 30. Be7 Re8 31. Bxf6 c5 32. Ng6 fxg6 33. Bxg6 Rf8 34. Be7
+Rfe8 35. Bxe8 Rxe8 36. Bf6 cxd4 37. Kf2 dxe3+ 38. Kg3 d4 39. Bxd4 Nb4 40. Bxa7
+Nd5 41. Kh4 Nf6 42. g4 h5 43. gxh5 Nxh5 44. Kxh5 Re5+ 45. Kg4 Re4+ 46. fxe4 Kf7
+47. Rxe3 Ke6 48. b4 Kd6 49. b5 Kc7 50. Rc3+ Kb7 51. Bd4 Kb8 52. a4 Kb7 53. h4
+Kb8 54. h5 Kb7 55. h6 Kb8 56. h7 Kb7 57. h8=Q 1/2-1/2
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "anassadiq"]
+[Result "0-1"]
+[WhiteElo "304"]
+[BlackElo "310"]
+[TimeControl "600"]
+[EndTime "0:53:42 GMT+0000"]
+[Termination "anassadiq won by resignation"]
+
+1. e4 d5 2. Nc3 Nf6 3. Nf3 Bg4 4. d4 e5 5. Bb5+ c6 6. Ba4 dxe4 7. Nxe4 Nxe4 8.
+Bg5 f6 9. Bxf6 gxf6 10. dxe5 Bb4+ 11. c3 Bxc3+ 12. bxc3 Nxc3 13. Qxd8+ Kxd8 14.
+O-O Nxa4 15. Nd4 fxe5 16. Ne6+ 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "rdubrueler"]
+[Result "1-0"]
+[WhiteElo "312"]
+[BlackElo "281"]
+[TimeControl "600"]
+[EndTime "1:02:08 GMT+0000"]
+[Termination "epicspongee won by checkmate"]
+
+1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. Bb5+ c6 5. Ba4 Qa5+ 6. c3 Na6 7. h3 Bh5 8. dxe5
+Nb4 9. O-O dxe5 10. cxb4 Bxb4 11. a3 Rd8 12. Bd2 Bxd2 13. Nbxd2 Rxd2 14. Qxd2
+Qxa4 15. Qd6 Nf6 16. Qxe5+ Kf8 17. Qd6+ Ke8 18. Rfd1 Qxd1+ 19. Rxd1 Nd7 20.
+Qxd7+ Kf8 21. Qd8# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "Nonolescarg0t"]
+[Result "0-1"]
+[WhiteElo "304"]
+[BlackElo "309"]
+[TimeControl "600"]
+[EndTime "1:19:06 GMT+0000"]
+[Termination "Nonolescarg0t won by resignation"]
+
+1. e4 e5 2. Nf3 f6 3. d4 Nc6 4. d5 Nb4 5. Nc3 c6 6. Be3 Ne7 7. Bc4 Qa5 8. a3
+cxd5 9. exd5 Nbxd5 10. b4 Nxb4 11. axb4 Qxb4 12. Qd2 Qxc4 13. Qd3 Qc6 14. O-O
+Nf5 15. Nd5 Bc5 16. Qxf5 Qxd5 17. Qd3 Bd4 18. Bxd4 exd4 19. Nxd4 O-O 20. Nb5
+Qxd3 21. cxd3 a6 22. Nd6 b5 23. Rae1 Bb7 24. Re2 a5 25. Nxb7 Ra6 26. Rfe1 Kf7
+27. Re7+ Kg6 28. Nc5 Rd6 29. Kf1 b4 30. Nb3 a4 31. R1e6 dxe6 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "3marm7md"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "321"]
+[BlackElo "296"]
+[TimeControl "600"]
+[EndTime "1:20:43 GMT+0000"]
+[Termination "3marm7md won by resignation"]
+
+1. e4 e5 2. Qh5 Nf6 3. Qxe5+ 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "GabrielFerrari5"]
+[Black "epicspongee"]
+[Result "0-1"]
+[WhiteElo "292"]
+[BlackElo "304"]
+[TimeControl "600"]
+[EndTime "1:26:13 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bc4 Nf6 4. Nh3 Bc5 5. Nc3 d6 6. Nd5 Bg4 7. Qg3 O-O 8. Bb5
+a6 9. Bxc6 bxc6 10. Ne3 Qd7 11. Nxg4 Nxg4 12. Qf3 d5 13. exd5 cxd5 14. Qxg4 Qxg4
+0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "RafaCue"]
+[Result "1-0"]
+[WhiteElo "312"]
+[BlackElo "287"]
+[TimeControl "600"]
+[EndTime "1:37:35 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nxe4 4. f3 Ng5 5. d4 Bb4+ 6. c3 Bxc3+ 7. bxc3 Qf6 8.
+Nd2 d6 9. Ng4 Qf5 10. Bc4 Nc6 11. Ba3 Be6 12. O-O h5 13. Rb1 hxg4 14. fxg4 Qa5
+15. Rc1 Nh3+ 16. gxh3 Qxa3 17. Bxe6 fxe6 18. Qf3 Rf8 19. Qxf8+ Kd7 20. Qxa8 Qxc3
+21. Rxc3 Nxd4 22. Qxb7 Ne2+ 23. Kf2 Nxc3 24. Kg2 Nxa2 25. Rf7+ Ke8 26. Rxg7 Kf8
+27. Qxc7 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "banjerine"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "324"]
+[BlackElo "304"]
+[TimeControl "600"]
+[EndTime "1:44:34 GMT+0000"]
+[Termination "banjerine won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Bxd5 Qxd5 7. O-O Bc5 8.
+Nf3 e4 9. Ne1 Bf5 10. d3 O-O 11. dxe4 Qxe4 12. h3 Qe5 13. Nf3 Qe4 14. Ng5 Bd6
+15. Nxe4 Bxe4 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "epicspongee"]
+[Black "jmol9"]
+[Result "1/2-1/2"]
+[WhiteElo "304"]
+[BlackElo "305"]
+[TimeControl "600"]
+[EndTime "1:59:40 GMT+0000"]
+[Termination "Game drawn - insufficient material"]
+
+1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nxd4 5. Qxd4 b6 6. Be3 c5 7. Qd5 d6 8.
+Qxa8 Be6 9. Qxa7 b5 10. Bxb5+ Bd7 11. Nc3 Bxb5 12. Nxb5 d5 13. Nc7+ Kd7 14.
+Nxd5+ Kc8 15. Qxc5+ Kd7 16. Qa7+ Ke8 17. Bb6 Qc8 18. Qc7 Qxc7 19. Nxc7+ Kd7 20.
+Rd1+ Kc6 21. Ba5 Nf6 22. O-O Kc5 23. Na6+ Kb5 24. b4 Kxa6 25. c4 Nxe4 26. Rd6+
+Bxd6 27. c5 Be5 28. c6 Nd2 29. Rc1 Rc8 30. c7 Kb7 31. b5 f5 32. Rd1 Nc4 33. b6
+Nxa5 34. Re1 Bc3 35. Rd1 Kxb6 36. Rd7 Rxc7 37. Rxc7 Kxc7 38. Kf1 Nc4 39. Ke2 Bd2
+40. f3 g5 41. g4 fxg4 42. fxg4 Kd6 43. Kf3 Ke5 44. Kg3 Kf6 45. Kf3 Ne5+ 46. Kg3
+Nxg4 47. Kxg4 Kg6 48. Kg3 h5 49. h4 gxh4+ 50. Kxh4 Kh6 51. a4 Kg6 52. Kg3 Kg5
+53. Kf3 h4 54. Kf2 Kf4 55. Ke2 Bb4 56. Kf2 Kg4 57. Ke3 h3 58. Kf2 Kh4 59. Kg1
+Bc5+ 60. Kh2 Bd6+ 61. Kg1 Kg3 62. Kh1 h2 63. a5 Kf2 64. a6 Bc5 65. a7 Bxa7 66.
+Kxh2 1/2-1/2
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "alenzi0501"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "308"]
+[BlackElo "296"]
+[TimeControl "600"]
+[EndTime "2:19:25 GMT+0000"]
+[Termination "alenzi0501 won by checkmate"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. Bb3 dxe4 6. Nxf7 Qd4 7. d3 Rg8 8.
+Be3 Qb4+ 9. Nc3 exd3 10. cxd3 Bg4 11. Qc2 Bc5 12. a3 Qa5 13. O-O Bxe3 14. fxe3
+Rf8 15. Ng5 O-O-O 16. Ne6 Bxe6 17. Bxe6+ Kb8 18. b4 Nxb4 19. axb4 Qxa1 20. Rxa1
+Ng4 21. Qa2 a6 22. Nb5 c6 23. Nc3 Nxe3 24. Ne4 Rxd3 25. Qe2 Rfd8 26. Nc5 Rd1+
+27. Kf2 Rxa1 28. Qxe3 Ra2+ 29. Kg3 Rad2 30. Bf5 Rd1 31. Ne6 R8d2 32. Nc5 g6 33.
+Be6 Rd3 34. Nxd3 Rxd3 35. Qxd3 Kc7 36. Qd7+ Kb6 37. h4 a5 38. Qxh7 axb4 39. Qxg6
+b3 40. h5 Kb5 41. h6 Kb4 42. h7 b2 43. h8=Q b1=Q 44. Qxb1+ Kc3 45. Qxe5+ Kd2 46.
+Qb3 Kc1 47. Qa5 c5 48. Qxc5+ Kd2 49. Qcc2+ Ke1 50. Qbb1# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.08"]
+[Round "-"]
+[White "opl909090"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "178"]
+[BlackElo "137"]
+[TimeControl "180"]
+[EndTime "2:51:25 GMT+0000"]
+[Termination "opl909090 won on time"]
+
+1. e4 e5 2. Nf3 Nc6 3. d3 Nf6 4. g4 d5 5. exd5 Nxd5 6. c4 Nf6 7. Bg5 Bxg4 8. Be2
+e4 9. dxe4 Qxd1+ 10. Kxd1 h6 11. Bf4 O-O-O+ 12. Nbd2 Bb4 13. e5 Nh5 14. Be3 f6
+15. Bxa7 Nxa7 16. exf6 gxf6 17. Nd4 Bxe2+ 18. Kxe2 Rxd4 19. Ne4 Rd2+ 20. Ke3
+Rdd8 21. a3 Be7 22. f4 Rhe8 23. b4 Nc6 24. Nc5 Bxc5+ 25. Kf3 Bxb4 26. axb4 Nxb4
+27. Ra8+ Kd7 28. c5 Rxa8 29. Rd1+ Ke7 30. Re1+ Kd8 31. Rd1+ Ke7 32. Re1+ Kd8 33.
+Rd1+ Kc8 34. Kg4 Nd5 35. Kxh5 Nxf4+ 36. Kxh6 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "akkus86"]
+[Result "1-0"]
+[WhiteElo "304"]
+[BlackElo "302"]
+[TimeControl "600"]
+[EndTime "14:46:50 GMT+0000"]
+[Termination "epicspongee won by checkmate"]
+
+1. e4 Nf6 2. e5 Ne4 3. Nf3 d6 4. d3 Nc5 5. Nc3 Bg4 6. h3 Bxf3 7. Qxf3 Qd7 8. Bf4
+Qa4 9. Nxa4 Nxa4 10. O-O-O Nc6 11. d4 Nxd4 12. Rxd4 Nc5 13. Bc4 Ne6 14. Rdd1
+Nxf4 15. Qxf4 O-O-O 16. Qg4+ e6 17. f4 dxe5 18. Rxd8+ Kxd8 19. fxe5 f5 20. Qg5+
+Kc8 21. Rd1 h6 22. Qd8# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "sangeetha-narayan"]
+[Result "1-0"]
+[WhiteElo "312"]
+[BlackElo "275"]
+[TimeControl "600"]
+[EndTime "14:53:46 GMT+0000"]
+[Termination "epicspongee won by checkmate"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 Qe7 4. d4 Nxe4 5. Nc3 d6 6. Nxe4 dxe5 7. dxe5 Qxe5
+8. Bd3 Nc6 9. Bg5 Qxb2 10. Bc4 Qb4+ 11. Nd2 Qd6 12. O-O Qe5 13. Nf3 a6 14. Nxe5
+Nxe5 15. Qd8# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "8953si"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "299"]
+[BlackElo "304"]
+[TimeControl "600"]
+[EndTime "15:04:32 GMT+0000"]
+[Termination "8953si won by resignation"]
+
+1. h4 e5 2. a4 Nf6 3. g3 d5 4. b3 Nc6 5. d3 Bb4+ 6. Bd2 Bg4 7. c3 Ba5 8. b4 Bb6
+9. a5 Bc5 10. bxc5 d4 11. Qb3 O-O 12. Qxb7 Ne7 13. f3 Rb8 14. Qxa7 Ra8 15. Qb7
+Bxf3 16. exf3 dxc3 17. Bxc3 e4 18. dxe4 Qb8 19. Qxb8 Raxb8 20. a6 Nh5 21. g4 Ng3
+22. Rh3 Nxf1 23. Kxf1 Rfd8 24. Na3 Rb3 25. Ba5 Rbd3 26. Bxc7 Rd1+ 27. Rxd1 Rxd1+
+28. Ke2 Rxg1 29. a7 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "ODGuerra"]
+[Result "1/2-1/2"]
+[WhiteElo "304"]
+[BlackElo "291"]
+[TimeControl "600"]
+[EndTime "15:23:15 GMT+0000"]
+[Termination "Game drawn by repetition"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 exd4 5. Nxd4 Nxe4 6. Nxc6 bxc6 7. Nxe4 f5
+8. Bg5 Be7 9. Qh5+ g6 10. Nf6+ Bxf6 11. Qh6 Bxg5 12. Qg7 Qe7+ 13. Be2 Rf8 14.
+Qc3 d5 15. O-O Bf6 16. Qe3 d4 17. Qxe7+ Kxe7 18. c3 dxc3 19. bxc3 Bxc3 20. Rac1
+Bb2 21. Rxc6 Kd7 22. Rc2 Rb8 23. a4 a5 24. Rc5 Ra8 25. Rd1+ Ke6 26. Bc4+ Kf6 27.
+Rc6+ Kg5 28. h4+ Kxh4 29. Rd4+ Kg5 30. f4+ Kg4 31. Be2+ Kg3 32. Rd3+ Kxf4 33.
+Rc4+ Ke5 34. Re3+ Kd5 35. Rc2 Ba6 36. Rxb2 Bxe2 37. Rbxe2 Rfe8 38. Rxe8 Rxe8 39.
+Rxe8 Kd6 40. Kf2 g5 41. Ke3 f4+ 42. Ke4 Kd7 43. Re5 Kd6 44. Rd5+ Ke6 45. Rxg5
+Kf6 46. Rf5+ Kg6 47. Ke5 c5 48. Rf6+ Kg5 49. Rf5+ Kg4 50. Rxf4+ Kg3 51. Kf5 Kxg2
+52. Kg4 h5+ 53. Kxh5 Kg3 54. Rc4 Kf3 55. Rxc5 Ke4 56. Rxa5 Kd4 57. Rf5 Kc4 58.
+Kg4 Kb4 59. Rd5 Kxa4 60. Rc5 Kb3 61. Kf4 Kb4 62. Rh5 Kc4 63. Re5 Kd4 64. Rh5 Kc4
+65. Re5 Kd4 66. Rh5 Kc4 1/2-1/2
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "crumptz"]
+[Black "epicspongee"]
+[Result "0-1"]
+[WhiteElo "297"]
+[BlackElo "312"]
+[TimeControl "600"]
+[EndTime "15:32:54 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d3 d5 5. Qd2 dxe4 6. dxe4 Qxd2+ 7. Bxd2 Bg4 8.
+h3 Bh5 9. Bc4 Bc5 10. O-O-O O-O 11. Rhg1 Bg6 12. a3 Nxe4 13. Nxe4 Bxe4 14. Rgf1
+Nd4 15. Nxe5 Bxg2 16. Rg1 Bxh3 17. Nd7 Bxd7 18. Rde1 Nf3 19. Re7 Nxg1 20. Rxd7
+Rae8 21. Rxf7 Ne2+ 22. Bxe2 Rxe2 23. Kd1 Rxf2 24. Re7 Rf1+ 25. Ke2 R1f2+ 26. Kd3
+R2f3+ 27. Kc4 Bxe7 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "rahulghadge1001"]
+[Result "1/2-1/2"]
+[WhiteElo "312"]
+[BlackElo "296"]
+[TimeControl "600"]
+[EndTime "15:46:29 GMT+0000"]
+[Termination "Game drawn by repetition"]
+
+1. e4 e5 2. Nf3 g5 3. Nxe5 Bd6 4. d4 f6 5. Ng4 h5 6. Nxf6+ Nxf6 7. Bxg5 Nxe4 8.
+Bxd8 Kxd8 9. Be2 Nc6 10. Bxh5 Nf6 11. Bf7 Nxd4 12. Qxd4 c5 13. Qxf6+ Kc7 14.
+Qxh8 c4 15. O-O b5 16. Nc3 Bb7 17. Nxb5+ Kc6 18. Bxc4 Rxh8 19. Nd4+ Kc5 20. Ne6+
+Kxc4 21. Ng5 Rg8 22. Nf3 Rh8 23. b3+ Kb4 24. a3+ Kb5 25. a4+ Kb6 26. a5+ Ka6 27.
+Rad1 Bc7 28. b4 Bxf3 29. gxf3 Bxh2+ 30. Kg2 Kb5 31. Rh1 Be5 32. Rxd7 Rg8+ 33.
+Kf1 Kxb4 34. a6 Ka5 35. Rxa7 Bd4 36. Rh5+ Ka4 37. Rhh7 Bxa7 38. Rxa7 Ka5 39. c4
+Kb6 40. Rh7 Kxa6 41. Rh6+ Ka5 42. c5 Kb5 43. Rh5 Rf8 44. Ke2 Kc6 45. Ke3 Re8+
+46. Kf4 Rf8+ 47. Ke3 Re8+ 48. Kf4 Rf8+ 49. Kg3 Rg8+ 50. Kf4 Rf8+ 1/2-1/2
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "xRazmo24"]
+[Black "epicspongee"]
+[Result "0-1"]
+[WhiteElo "295"]
+[BlackElo "320"]
+[TimeControl "600"]
+[EndTime "21:53:08 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e5 2. Nc3 Nf6 3. Bc4 Nc6 4. Nf3 Bb4 5. a3 Ba5 6. b4 Bb6 7. O-O d6 8. Ng5
+d5 9. d3 dxc4 10. Bf4 O-O 11. Bxe5 Nxe5 12. d4 Bxd4 13. Qg4 Bxg4 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "ErmionGranger"]
+[Result "1-0"]
+[WhiteElo "328"]
+[BlackElo "309"]
+[TimeControl "600"]
+[EndTime "22:02:09 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4 5. a3 Bxc3 6. dxc3 Ne7 7. c4 c6 8. Ba4
+Nxe4 9. Nxe5 Nc5 10. Qh5 g5 11. Nxf7 Nxa4 12. Nxd8+ Kxd8 13. Qxg5 Re8 14. O-O d5
+15. cxd5 cxd5 16. b3 Bf5 17. bxa4 Kd7 18. Qf4 Rac8 19. Ra2 Rf8 20. Qh6 Bxc2 21.
+Qd2 Bxa4 22. Qh6 Bb5 23. Rd1 Be2 24. Qxh7 Rh8 25. Qf5+ Ke8 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "Phant0m_11"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "332"]
+[BlackElo "320"]
+[TimeControl "600"]
+[EndTime "22:20:04 GMT+0000"]
+[Termination "Phant0m_11 won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 Bb4 5. Bd2 d5 6. exd5 Nxd5 7. Nxd5 Qxd5 8.
+Bxb4 Nxb4 9. a3 Nc6 10. b3 Be6 11. c4 Qa5+ 12. b4 Nxb4 13. axb4 Qxb4+ 14. Nd2
+Qc3 15. Rc1 Qxd4 16. Be2 O-O-O 17. O-O f5 18. Nf3 Qf4 19. g3 Qg4 20. Nxe5 Qe4
+21. Nd3 Bxc4 22. f3 Qc6 23. Re1 Qd5 24. f4 Bxd3 25. Bxd3 Qd4+ 26. Kf1 g5 27.
+Bxf5+ Kb8 28. Bxh7 Qxd1 29. Rexd1 Rxd1+ 30. Rxd1 Rxh7 31. fxg5 Kc8 32. Re1 a5
+33. g6 Rh5 34. g7 Rg5 35. Re7 Kd8 36. Rf7 Ke8 37. g8=Q+ Rxg8 38. Rxc7 Rf8+ 39.
+Ke2 a4 40. Rxb7 Rf5 41. g4 Rd5 42. Ra7 Rd4 43. g5 Kf8 44. Ke3 Rc4 45. h4 Ke8 46.
+Kd3 Rb4 47. Kc3 Rb3+ 48. Kc4 Rb4+ 49. Kxb4 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "naoeocharlie"]
+[Result "0-1"]
+[WhiteElo "313"]
+[BlackElo "353"]
+[TimeControl "600"]
+[EndTime "22:51:42 GMT+0000"]
+[Termination "naoeocharlie won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 d5 4. d4 exd4 5. Nxd4 dxe4 6. Nxe4 Nxd4 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "AlePa73"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "326"]
+[BlackElo "305"]
+[TimeControl "600"]
+[EndTime "23:03:21 GMT+0000"]
+[Termination "AlePa73 won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. d3 Nf6 4. Be2 d5 5. exd5 Nxd5 6. c4 Nf4 7. O-O Bb4 8. a3
+Bd6 9. Nc3 O-O 10. Nd5 Be6 11. Nc3 a6 12. g3 Ng6 13. Be3 Bf5 14. Ng5 e4 15. dxe4
+Bh3 16. Nxh3 b5 17. cxb5 axb5 18. Nxb5 Rb8 19. a4 Qf6 20. Qc2 Nb4 21. Qc4 Qxb2
+22. Rab1 Qe5 23. Ng5 Qc5 24. Bxc5 Bxc5 25. Qxc5 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "kingm0ve"]
+[Result "1-0"]
+[WhiteElo "313"]
+[BlackElo "265"]
+[TimeControl "600"]
+[EndTime "23:18:38 GMT+0000"]
+[Termination "epicspongee won on time"]
+
+1. e4 e5 2. Nf3 d6 3. Nc3 c6 4. d4 Nf6 5. dxe5 dxe5 6. Nxe5 Bd6 7. Nxf7 Kxf7 8.
+Bc4+ Be6 9. Bb3 Re8 10. O-O Bxh2+ 11. Kxh2 Kf8 12. e5 Ng4+ 13. Kg1 Qh4 14. Qd6+
+Kf7 15. f3 Nh2 16. Bxe6+ Rxe6 17. Qc7+ Re7 18. Qd6 Nxf1 19. Kxf1 Qh1+ 20. Ke2
+Qxg2+ 21. Ke3 Qg1+ 22. Ke2 Qg2+ 23. Ke3 Qxc2 24. Qf6+ Ke8 25. Qd6 Na6 26. Qd3
+Qg2 27. Qe2 Rxe5+ 28. Ne4 Qg1+ 29. Qf2 Qh1 30. f4 Rd5 31. Ke2 Rad8 32. Qf1 Qxe4+
+33. Be3 Qc2+ 34. Bd2 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "drbumblebeephd"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "331"]
+[BlackElo "305"]
+[TimeControl "600"]
+[EndTime "23:24:10 GMT+0000"]
+[Termination "drbumblebeephd won by checkmate"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Nc3 d5 5. exd5 Nd4 6. Nxe5 Qxd5 7. Bxd5 c6 8.
+Bxf7+ Ke7 9. d3 Nxc2+ 10. Qxc2 Bg4 11. h3 Kd6 12. Bf4 Re8 13. Bxe8 Kc5 14. O-O
+Kd4 15. Be3+ Kxe5 16. Rae1 Nxe8 17. Bd4+ Kxd4 18. Re4+ Kc5 19. Na4+ Kd5 20. Rxg4
+Nf6 21. Rg5+ Kd4 22. Qc3# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "Drawn_black"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "316"]
+[BlackElo "297"]
+[TimeControl "600"]
+[EndTime "23:32:01 GMT+0000"]
+[Termination "Drawn_black won by checkmate"]
+
+1. e4 e5 2. Nf3 Qh4 3. Nxe5 Bc5 4. Qf3 d6 5. Qxf7+ Kd8 6. d4 Bxd4 7. Qf4 Bxe5 8.
+Qxh4+ Nf6 9. Bc4 Bg4 10. O-O Bxh2+ 11. Kxh2 h5 12. f3 Bxf3 13. gxf3 Rg8 14. Bg5
+Nd7 15. Bxg8 Ke8 16. Be6 Ke7 17. Nc3 Kxe6 18. f4 Nxe4 19. Nxe4 Kd5 20. Nc3+ Kc4
+21. f5+ Kc5 22. Be3+ Kc6 23. Qe4+ d5 24. Qe6# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "Dancing_Owl"]
+[Result "0-1"]
+[WhiteElo "290"]
+[BlackElo "333"]
+[TimeControl "600"]
+[EndTime "23:53:56 GMT+0000"]
+[Termination "Dancing_Owl won by checkmate"]
+
+1. g4 e5 2. f4 exf4 3. h3 Qh4# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "caleb123456789123456789"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "317"]
+[BlackElo "282"]
+[TimeControl "600"]
+[EndTime "23:56:11 GMT+0000"]
+[Termination "caleb123456789123456789 won by checkmate"]
+
+1. e4 b5 2. d4 f5 3. exf5 g5 4. fxg6 Na6 5. gxh7 b4 6. hxg8=Q Rh5 7. Qg6# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "Knaza93"]
+[Result "0-1"]
+[WhiteElo "275"]
+[BlackElo "311"]
+[TimeControl "600"]
+[EndTime "0:03:45 GMT+0000"]
+[Termination "Knaza93 won by checkmate"]
+
+1. g4 e5 2. f3 d5 3. c4 Nf6 4. b4 Bxb4 5. c5 Bxc5 6. f4 Nc6 7. a4 Nxg4 8. h4 O-O
+9. a5 b6 10. Na3 bxa5 11. Bb2 Qd6 12. fxe5 Ngxe5 13. Bxe5 Qxe5 14. Qa4 Qxa1+ 15.
+Qd1 Qxa3 16. Qc1 Bf5 17. Qxa3 Bxa3 18. Bg2 Rad8 19. e4 dxe4 20. Bxe4 Bxe4 21.
+Ne2 Bxh1 22. Ng3 Bd5 23. Nf5 Rde8+ 24. Kf2 Nb4 25. Kg1 Nd3 26. Nxg7 Kxg7 27. h5
+h6 28. Kf1 Re1# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "natheolebgdu69"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "300"]
+[BlackElo "267"]
+[TimeControl "600"]
+[EndTime "0:08:27 GMT+0000"]
+[Termination "natheolebgdu69 won by checkmate"]
+
+1. d4 g5 2. Nf3 b5 3. Bxg5 e5 4. Nxe5 Bc5 5. Be3 Qg5 6. Bxg5 Nf6 7. Bxf6 O-O 8.
+e3 Ba3 9. bxa3 Na6 10. Bxb5 Nc5 11. dxc5 c6 12. Bc4 Rb8 13. Nc3 Rb6 14. Bxf7+
+Rxf7 15. Nxf7 Rb3 16. Rb1 Rb5 17. Qd4 Ba6 18. Qe4 Rb3 19. Qe8# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "Luca_Diesel"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "275"]
+[BlackElo "259"]
+[TimeControl "600"]
+[EndTime "0:10:10 GMT+0000"]
+[Termination "Luca_Diesel won by checkmate"]
+
+1. e4 b5 2. Qf3 Nf6 3. Bxb5 Nh5 4. Bc4 g5 5. Qxf7# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "cheemsbreb"]
+[Result "0-1"]
+[WhiteElo "251"]
+[BlackElo "318"]
+[TimeControl "600"]
+[EndTime "0:11:16 GMT+0000"]
+[Termination "cheemsbreb won by checkmate"]
+
+1. g4 e5 2. f3 Qe7 3. f4 exf4 4. Na3 Qg5 5. c3 Qh4# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.09"]
+[Round "-"]
+[White "epicspongee"]
+[Black "tjhtyjuy"]
+[Result "0-1"]
+[WhiteElo "243"]
+[BlackElo "245"]
+[TimeControl "600"]
+[EndTime "0:15:29 GMT+0000"]
+[Termination "tjhtyjuy won by checkmate"]
+
+1. g4 d5 2. f4 e5 3. f5 g6 4. h3 g5 5. f6 Nxf6 6. Kf2 h5 7. Ke3 c5 8. h4 hxg4 9.
+Kd3 gxh4 10. Kc3 Nc6 11. Kb3 c4+ 12. Ka4 Qa5# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.10"]
+[Round "-"]
+[White "lulabeti"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "251"]
+[BlackElo "235"]
+[TimeControl "600"]
+[EndTime "1:06:30 GMT+0000"]
+[Termination "lulabeti won by checkmate"]
+
+1. d4 e5 2. dxe5 Ke7 3. Bf4 Ke8 4. e3 Bb4+ 5. Nd2 Nc6 6. Nf3 d6 7. c3 dxe5 8.
+Nxe5 Nf6 9. cxb4 Nxb4 10. Nef3 Ke7 11. Bd3 Ke8 12. Bb5+ Bd7 13. Bxd7+ Qxd7 14.
+Ne5 Qd5 15. Qa4+ Kd8 16. Nxf7+ Kc8 17. Nxh8 Kd8 18. Qxb4 Qxg2 19. Rf1 Ke8 20.
+Qb5+ Kf8 21. Qc5+ Kg8 22. Qg5 Kxh8 23. Qxg2 Nd5 24. Bxc7 Rd8 25. Bxd8 Nxe3 26.
+Qe4 Nxf1 27. Kxf1 h6 28. Qg6 Kg8 29. Re1 Kf8 30. Be7+ Kg8 31. Bd6 Kh8 32. Re8#
+1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "samadhi46"]
+[Result "0-1"]
+[WhiteElo "227"]
+[BlackElo "248"]
+[TimeControl "600"]
+[EndTime "20:12:36 GMT+0000"]
+[Termination "samadhi46 won on time"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 d6 4. d4 exd4 5. Nxd4 Nxd4 6. Qxd4 c5 7. Qd5 Be7 8.
+Bc4 Be6 9. Qxb7 Rb8 10. Qxa7 Bxc4 11. Qa4+ Bb5 12. Nxb5 Ra8 13. Qb3 Qd7 14. Bf4
+Ra5 15. c4 g5 16. Bd2 g4 17. Bc3 Bf6 18. Bxa5 d5 19. O-O dxc4 20. Qxc4 Bd4 21.
+Nc7+ Kd8 22. Rad1 Bxb2 23. Rxd7+ Kxd7 24. Qd5+ Ke7 25. Qb3 Be5 26. Nd5+ Ke6 27.
+Nc7+ Kf6 28. Nd5+ Ke6 29. Qb6+ Bd6 30. Rd1 Ke5 31. Nc3 Ne7 32. Rd5+ Nxd5 33.
+exd5 Rb8 34. f4+ Kxf4 35. Qxd6+ Kg5 36. Qe5+ f5 37. h4+ Kxh4 38. Qxf5 Rb1+ 39.
+Nxb1 c4 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "francoisbirkan"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "264"]
+[BlackElo "220"]
+[TimeControl "900+10"]
+[EndTime "20:19:33 GMT+0000"]
+[Termination "francoisbirkan won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 d5 5. dxe5 Nxe5 6. Nxe5 dxe4 7. Bc4 Bd6 8.
+Nxf7 Qe7 9. Nxh8 Bg4 10. Qd4 c5 11. Qe3 O-O-O 12. Nf7 Rf8 13. Nxd6+ Qxd6 14. Bd2
+b5 15. Bxb5 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "dzyuba11"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "215"]
+[BlackElo "212"]
+[TimeControl "600"]
+[EndTime "20:24:34 GMT+0000"]
+[Termination "dzyuba11 won by resignation"]
+
+1. d4 d5 2. Nc3 Nf6 3. Bf4 Nc6 4. f3 e5 5. dxe5 Nxe5 6. Bxe5 Bc5 7. Nh3 O-O 8.
+e4 c6 9. Na4 Bb6 10. f4 Nxe4 11. c3 Qh4+ 12. Ke2 Qxf4 13. Nxf4 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "anutra_samanta_oppp"]
+[Result "0-1"]
+[WhiteElo "205"]
+[BlackElo "242"]
+[TimeControl "600"]
+[EndTime "20:29:20 GMT+0000"]
+[Termination "anutra_samanta_oppp won by checkmate"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bd6 5. d3 O-O 6. Bg5 h6 7. Be3 a6 8. Ba4
+Qe8 9. d4 exd4 10. Nxd4 Bb4 11. a3 Bxc3+ 12. bxc3 d6 13. O-O Bg4 14. Qb1 Bh5 15.
+c4 Qe5 16. Qxb7 Ng4 17. Qxc6 Qxh2# 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "beingsrquev"]
+[Result "0-1"]
+[WhiteElo "198"]
+[BlackElo "235"]
+[TimeControl "600"]
+[EndTime "20:34:43 GMT+0000"]
+[Termination "beingsrquev won by resignation"]
+
+1. e4 b6 2. Nf3 e6 3. d4 g6 4. Bg5 f6 5. Bh4 g5 6. Bg3 c5 7. Nc3 Bg7 8. Bb5 a6
+9. Bxa6 Bxa6 10. Qd2 f5 11. exf5 cxd4 12. O-O-O dxc3 13. bxc3 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "smluther"]
+[Result "1-0"]
+[WhiteElo "206"]
+[BlackElo "209"]
+[TimeControl "600"]
+[EndTime "20:40:45 GMT+0000"]
+[Termination "epicspongee won - game abandoned"]
+
+1. e4 e5 2. Nf3 d6 3. d4 Nc6 4. Nc3 Nb4 5. a3 Nc6 6. Bb5 a6 7. Be2 Nxd4 8. Nxd4
+exd4 9. Qxd4 c5 10. Qd5 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "mistress84"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "225"]
+[BlackElo "198"]
+[TimeControl "600"]
+[EndTime "20:58:03 GMT+0000"]
+[Termination "mistress84 won on time"]
+
+1. d4 Nc6 2. e4 e5 3. c3 Nf6 4. dxe5 Nxe5 5. Bb5 Nxe4 6. f3 Nf6 7. f4 Neg4 8.
+Nf3 Nf2 9. Rf1 Nxd1 10. Kxd1 a6 11. Na3 axb5 12. Nxb5 d5 13. Nbd4 Bc5 14. Nf5
+Bxf5 15. Ne5 O-O 16. Re1 Qe8 17. Nd3 Qd8 18. Nxc5 Bg4+ 19. Kc2 d4 20. Nxb7 Qd5
+21. b3 dxc3 22. Kxc3 Ne4+ 23. Kb4 Qxb7+ 24. Kc4 Qd5+ 25. Kxd5 Ra5+ 26. Kxe4 Bf5+
+27. Kf3 Rd8 28. Bd2 g6 29. Bxa5 Rd3+ 30. Ke2 Rd5 31. Bxc7 Bd3+ 32. Kd2 Bb5+ 33.
+Ke3 Rc5 34. Rad1 Rxc7 35. Kf2 Rc2+ 36. Kf3 Bc6+ 37. Ke3 Rc3+ 38. Kd4 Rc2 39. Ke3
+Rxa2 40. Rd8+ Kg7 41. Kd4 Rd2+ 42. Kc5 Rxd8 43. Kxc6 Rd2 44. b4 Rxg2 45. b5 Rxh2
+46. Re8 f6 47. b6 Kf7 48. b7 Kxe8 49. b8=Q+ Ke7 50. Qb1 h5 51. Qg1 Rc2+ 52. Kb5
+Rb2+ 53. Kc4 Rc2+ 54. Kb3 Rc7 55. Qb6 Kd7 56. Kb4 Rc6 57. Qb5 h4 58. Ka5 h3 59.
+Qf1 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "hemantp514"]
+[Black "epicspongee"]
+[Result "0-1"]
+[WhiteElo "188"]
+[BlackElo "206"]
+[TimeControl "600"]
+[EndTime "21:13:09 GMT+0000"]
+[Termination "epicspongee won - game abandoned"]
+
+1. e4 Nf6 2. Bc4 e5 3. Qf3 d5 4. Bb3 dxe4 5. Qd3 Qxd3 6. cxd3 exd3 7. Ba4+ Bd7
+8. Nc3 Bxa4 9. Nxa4 Nc6 10. Nc5 Bxc5 11. Nf3 O-O 12. O-O e4 13. Nh4 Ne7 14. Re1
+Rad8 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "bhcchess"]
+[Result "0-1"]
+[WhiteElo "198"]
+[BlackElo "233"]
+[TimeControl "600"]
+[EndTime "21:18:20 GMT+0000"]
+[Termination "bhcchess won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bc4 Qe7 5. d3 Nd4 6. Nxd4 exd4 7. Nb5 d5 8.
+Bb3 Qb4+ 9. Bd2 Qxb5 10. exd5 Nxd5 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "Markbosss"]
+[Result "1-0"]
+[WhiteElo "206"]
+[BlackElo "205"]
+[TimeControl "600"]
+[EndTime "21:23:50 GMT+0000"]
+[Termination "epicspongee won by checkmate"]
+
+1. e4 e5 2. Nf3 f6 3. Bc4 Bc5 4. Bxg8 Rxg8 5. d4 Bxd4 6. Nxd4 exd4 7. Qxd4 Qe7
+8. Nc3 c5 9. Qd5 Nc6 10. Qxg8+ Qf8 11. Qxh7 Nb4 12. O-O Nxc2 13. Rb1 g5 14. Nd5
+Rb8 15. Nc7+ Kd8 16. Nd5 g4 17. Bh6 Qd6 18. Qh8+ Qf8 19. Qxf8# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "akshat467"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "211"]
+[BlackElo "198"]
+[TimeControl "600"]
+[EndTime "21:26:30 GMT+0000"]
+[Termination "akshat467 won by checkmate"]
+
+1. e4 e5 2. Bc4 Nc6 3. Qh5 Nf6 4. Qxf7# 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "AsapRafael777"]
+[Result "1-0"]
+[WhiteElo "206"]
+[BlackElo "175"]
+[TimeControl "600"]
+[EndTime "21:32:58 GMT+0000"]
+[Termination "epicspongee won by resignation"]
+
+1. e4 e6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 f5 5. Nc3 Nf6 6. Nf3 Bd6 7. Bg5 h6 8. Bxf6
+Qxf6 9. Bb5+ c6 10. Ba4 e5 11. Qe2 b5 12. Bb3 f4 13. dxe5 Bxe5 14. Nxe5 f3 15.
+gxf3 b4 16. Ne4 Qxe5 17. O-O-O a5 18. Qd2 Bd7 19. Nd6+ Kd8 20. Rhe1 Qxh2 21.
+Nf7+ Kc7 22. Nxh8 1-0
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "epicspongee"]
+[Black "amboshy"]
+[Result "0-1"]
+[WhiteElo "198"]
+[BlackElo "213"]
+[TimeControl "600"]
+[EndTime "21:39:53 GMT+0000"]
+[Termination "amboshy won by resignation"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. Nc3 Bc5 5. d3 Ng4 6. O-O Nxf2 7. Qe2 O-O 8.
+Bg5 f6 9. Bh4 Ng4+ 10. d4 exd4 11. Nd5 d6 12. Bxc6 d3+ 13. Nd4 0-1
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.07.11"]
+[Round "-"]
+[White "joseantuan0920"]
+[Black "epicspongee"]
+[Result "1-0"]
+[WhiteElo "208"]
+[BlackElo "190"]
+[TimeControl "600"]
+[EndTime "21:57:57 GMT+0000"]
+[Termination "joseantuan0920 won by checkmate"]
+
+1. Nf3 d5 2. d4 Nf6 3. Bg5 Nc6 4. Bxf6 exf6 5. e3 Bg4 6. Bb5 f5 7. O-O a6 8.
+Bxc6+ bxc6 9. Nc3 Bd6 10. Qd2 f4 11. Ne5 O-O 12. Nxg4 fxe3 13. fxe3 c5 14. dxc5
+Bxc5 15. Nxd5 c6 16. c4 cxd5 17. Qxd5 Qe7 18. Ne5 Rad8 19. Qe4 a5 20. Rad1 Rxd1
+21. Rxd1 f6 22. Rd7 Qe6 23. Rd5 Bxe3+ 24. Qxe3 fxe5 25. Rxe5 Qf6 26. Qe1 h6 27.
+Re4 Qd8 28. Re2 Qb6+ 29. Kh1 Qc6 30. h3 Qxc4 31. Re8 Rxe8 32. Qxe8+ Kh7 33. b3
+Qc1+ 34. Kh2 Qf4+ 35. Kh1 Qf1+ 36. Kh2 Qa1 37. Qe4+ Kh8 38. Qe2 g5 39. Qd2 g4
+40. hxg4 Qe5+ 41. Kh3 Qg7 42. Qxa5 Qf7 43. Qa8+ Qg8 44. Qxg8+ Kxg8 45. a4 Kf8
+46. a5 Ke8 47. a6 Kd8 48. a7 Kc8 49. a8=Q+ Kc7 50. Qa5+ Kd6 51. b4 Kc6 52. b5+
+Kb7 53. b6 Kc6 54. Qa7 Kb5 55. b7 Kc4 56. b8=Q Kd5 57. Qe8 Kc4 58. Qc7+ Kb3 59.
+Qeb8+ Ka2 60. Qca7# 1-0

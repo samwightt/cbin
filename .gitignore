@@ -4,3 +4,4 @@
 *.cbin
 .DS_STORE
 *.zst
+!games.pgn
